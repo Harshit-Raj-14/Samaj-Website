@@ -1,5 +1,7 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
+import './EventsPage.css';
 
 const EventsPage = () => {
   // Example data for upcoming events

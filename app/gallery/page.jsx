@@ -1,11 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import './GalleryPage.css';
 
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeImage, setActiveImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [visibleItems, setVisibleItems] = useState(new Set());
+  const galleryRef = useRef(null);
+  const observerRef = useRef(null);
 
   // Example gallery images with categories
   const galleryImages = [
@@ -115,12 +120,62 @@ const GalleryPage = () => {
     ? galleryImages 
     : galleryImages.filter(img => img.category === activeCategory);
 
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const options = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('data-id');
+          setVisibleItems(prev => new Set([...prev, parseInt(id)]));
+        }
+      });
+    }, options);
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Observe gallery items
+  useEffect(() => {
+    if (galleryRef.current && observerRef.current) {
+      const items = galleryRef.current.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        observerRef.current.observe(item);
+      });
+    }
+  }, [filteredImages]);
+
+  // Loading simulation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle category change with smooth transition
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+    setVisibleItems(new Set()); // Reset visible items for new animation
+  };
+
   const openLightbox = (id) => {
     setActiveImage(id);
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
   };
 
   const closeLightbox = () => {
     setActiveImage(null);
+    document.body.style.overflow = 'unset';
   };
 
   const navigateImage = (direction) => {
@@ -135,6 +190,22 @@ const GalleryPage = () => {
     
     setActiveImage(galleryImages[newIndex].id);
   };
+
+  // Handle keyboard navigation in lightbox
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (activeImage) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateImage('prev');
+        if (e.key === 'ArrowRight') navigateImage('next');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [activeImage]);
+
+  const currentImage = galleryImages.find(img => img.id === activeImage);
 
   return (
     <div className="gallery-page">
@@ -156,7 +227,7 @@ const GalleryPage = () => {
                 <button
                   key={category}
                   className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(category)}
+                  onClick={() => handleCategoryChange(category)}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </button>
@@ -164,9 +235,17 @@ const GalleryPage = () => {
             </div>
           </div>
           
-          <div className="gallery-grid">
-            {filteredImages.map((image) => (
-              <div className="gallery-item" key={image.id} onClick={() => openLightbox(image.id)}>
+          <div className="gallery-grid" ref={galleryRef}>
+            {filteredImages.map((image, index) => (
+              <div 
+                key={image.id}
+                data-id={image.id}
+                className={`gallery-item ${visibleItems.has(image.id) ? 'animate' : ''}`}
+                onClick={() => openLightbox(image.id)}
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
+              >
                 <div className="gallery-image-container">
                   <Image
                     src={image.src}
@@ -174,6 +253,12 @@ const GalleryPage = () => {
                     width={600}
                     height={400}
                     className="gallery-image"
+                    loading="lazy"
+                    onLoadingComplete={() => {
+                      // Remove loading animation class when image loads
+                      const img = document.querySelector(`[data-id="${image.id}"] .gallery-image`);
+                      if (img) img.style.animation = 'none';
+                    }}
                   />
                 </div>
                 <div className="gallery-item-overlay">
@@ -190,36 +275,47 @@ const GalleryPage = () => {
       </section>
       
       {/* Lightbox */}
-      {activeImage && (
+      {activeImage && currentImage && (
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={closeLightbox}>×</button>
-            <button className="lightbox-nav lightbox-prev" onClick={() => navigateImage('prev')}>
+            <button 
+              className="lightbox-close" 
+              onClick={closeLightbox}
+              aria-label="Close lightbox"
+            >
+              ×
+            </button>
+            <button 
+              className="lightbox-nav lightbox-prev" 
+              onClick={() => navigateImage('prev')}
+              aria-label="Previous image"
+            >
               &#8249;
             </button>
-            <button className="lightbox-nav lightbox-next" onClick={() => navigateImage('next')}>
+            <button 
+              className="lightbox-nav lightbox-next" 
+              onClick={() => navigateImage('next')}
+              aria-label="Next image"
+            >
               &#8250;
             </button>
-            {galleryImages.find(img => img.id === activeImage) && (
-              <>
-                <Image
-                  src={galleryImages.find(img => img.id === activeImage)?.src || ''}
-                  alt={galleryImages.find(img => img.id === activeImage)?.title || ''}
-                  width={900}
-                  height={600}
-                  className="lightbox-image"
-                />
-                <div className="lightbox-caption">
-                  <h3>{galleryImages.find(img => img.id === activeImage)?.title}</h3>
-                  <p className="lightbox-description">
-                    {galleryImages.find(img => img.id === activeImage)?.description}
-                  </p>
-                  <p className="lightbox-date">
-                    {galleryImages.find(img => img.id === activeImage)?.date}
-                  </p>
-                </div>
-              </>
-            )}
+            <Image
+              src={currentImage.src}
+              alt={currentImage.title}
+              width={900}
+              height={600}
+              className="lightbox-image"
+              priority
+            />
+            <div className="lightbox-caption">
+              <h3>{currentImage.title}</h3>
+              <p className="lightbox-description">
+                {currentImage.description}
+              </p>
+              <p className="lightbox-date">
+                {currentImage.date}
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -231,7 +327,12 @@ const GalleryPage = () => {
             <p>
               Have photos from a recent Baranwal Samaj event? Share them with us to be featured in our gallery!
             </p>
-            <button className="btn">Upload Photos</button>
+            <button className="btn" onClick={() => {
+              // Add your upload functionality here
+              console.log('Upload photos clicked');
+            }}>
+              Upload Photos
+            </button>
           </div>
         </div>
       </section>
@@ -240,4 +341,3 @@ const GalleryPage = () => {
 };
 
 export default GalleryPage;
-

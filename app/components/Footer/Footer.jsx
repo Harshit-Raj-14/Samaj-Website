@@ -1,87 +1,225 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import './Footer.css';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+    
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const footerElement = document.getElementById('footer');
+    if (footerElement) {
+      observer.observe(footerElement);
+    }
+
+    return () => {
+      if (footerElement) {
+        observer.unobserve(footerElement);
+      }
+    };
+  }, []);
 
   return (
-    <footer className="footer">
+    <footer className={`footer ${isVisible ? 'animate-in' : ''}`} id="footer">
+      {/* Decorative Top Wave */}
       <div className="footer-wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path fill="#ff9800" fillOpacity="0.2" d="M0,96L48,112C96,128,192,160,288,154.7C384,149,480,107,576,112C672,117,768,171,864,176C960,181,1056,139,1152,117.3C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,120 C200,80 400,40 600,80 C800,120 1000,40 1200,80 L1200,120 Z" fill="#000"></path>
         </svg>
       </div>
-      
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-section about">
-            <h3 className="footer-title">Baranwal Samaj</h3>
-            <p>
-              We are dedicated to preserving our cultural heritage and 
-              building a strong, supportive community for all our members.
-            </p>
-            <div className="social-links">
-              <a href="#" className="social-icon">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" className="social-icon">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#" className="social-icon">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#" className="social-icon">
-                <i className="fab fa-youtube"></i>
-              </a>
+
+      <div className="footer-content">
+        <div className="container">
+          {/* Main Footer Content */}
+          <div className="footer-main">
+            <div className="footer-grid">
+              
+              {/* Organization Info */}
+              <div className="footer-section organization-info">
+                <div className="footer-logo">
+                  <div className="logo-icon">
+                    <span className="logo-symbol">🏛️</span>
+                  </div>
+                  <div className="logo-text">
+                    <h3>Baranwal Samaj</h3>
+                  </div>
+                </div>
+                
+                <p className="organization-description">
+                  Preserving our rich cultural heritage while building a strong, 
+                  united community for future generations. Together we celebrate 
+                  traditions, support each other, and create lasting bonds.
+                </p>
+
+                <div className="social-links">
+                  <h4>Connect With Us</h4>
+                  <div className="social-icons">
+                    <Link href="https://facebook.com" className="social-link facebook">
+                      <i className="social-icon">📘</i>
+                    </Link>
+                    <Link href="https://twitter.com" className="social-link twitter">
+                      <i className="social-icon">🐦</i>
+                    </Link>
+                    <Link href="https://instagram.com" className="social-link instagram">
+                      <i className="social-icon">📷</i>
+                    </Link>
+                    <Link href="https://youtube.com" className="social-link youtube">
+                      <i className="social-icon">📺</i>
+                    </Link>
+                    <Link href="https://linkedin.com" className="social-link linkedin">
+                      <i className="social-icon">💼</i>
+                    </Link>
+                    <Link href="https://whatsapp.com" className="social-link whatsapp">
+                      <i className="social-icon">💬</i>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Newsletter Signup - Moved below social links */}
+                <div className="newsletter-inline">
+                  <h4>Stay Updated</h4>
+                  <p className="newsletter-description">
+                    Subscribe to our newsletter for latest events, news, and community updates.
+                  </p>
+                  
+                  <form className="newsletter-form">
+                    <div className="input-group">
+                      <input 
+                        type="email" 
+                        placeholder="Enter your email address"
+                        className="newsletter-input"
+                        required
+                      />
+                      <button type="submit" className="newsletter-button">
+                        <span>Subscribe</span>
+                        <i className="button-icon">🔔</i>
+                      </button>
+                    </div>
+                    <label className="newsletter-checkbox">
+                      <input type="checkbox" required />
+                      <span className="checkmark"></span>
+                      <span className="checkbox-text">
+                        I agree to receive newsletters and updates
+                      </span>
+                    </label>
+                  </form>
+                </div>
+              </div>
+
+              {/* Quick Links */}
+              <div className="footer-section">
+                <h4 className="footer-title">Quick Links</h4>
+                <ul className="footer-links">
+                  <li><Link href="/">Home</Link></li>
+                  <li><Link href="/about">About Us</Link></li>
+                  <li><Link href="/activities">Our Activities</Link></li>
+                  <li><Link href="/events">Events</Link></li>
+                  <li><Link href="/achievements">Achievements</Link></li>
+                  <li><Link href="/gallery">Photo Gallery</Link></li>
+                  <li><Link href="/news">News & Updates</Link></li>
+                  <li><Link href="/contact">Contact Us</Link></li>
+                </ul>
+              </div>
+
+              {/* Community Services */}
+              <div className="footer-section">
+                <h4 className="footer-title">Community Services</h4>
+                <ul className="footer-links">
+                  <li><Link href="/services/membership">Membership</Link></li>
+                  <li><Link href="/services/cultural">Cultural Programs</Link></li>
+                  <li><Link href="/services/education">Educational Support</Link></li>
+                  <li><Link href="/services/youth">Youth Development</Link></li>
+                  <li><Link href="/services/senior">Senior Care</Link></li>
+                  <li><Link href="/services/welfare">Community Welfare</Link></li>
+                  <li><Link href="/services/business">Business Network</Link></li>
+                  <li><Link href="/services/matrimonial">Matrimonial Services</Link></li>
+                </ul>
+              </div>
+
+              {/* Contact Information */}
+              <div className="footer-section contact-info">
+                <h4 className="footer-title">Get In Touch</h4>
+                
+                <div className="contact-details">
+                  <div className="contact-item">
+                    <div className="contact-icon">📍</div>
+                    <div className="contact-text">
+                      <h5>Main Office</h5>
+                      <p>123 Community Center<br />Baranwal Nagar, City<br />State - 123456</p>
+                    </div>
+                  </div>
+
+                  <div className="contact-item">
+                    <div className="contact-icon">📞</div>
+                    <div className="contact-text">
+                      <h5>Phone Numbers</h5>
+                      <p>+91 98765 43210<br />+91 87654 32109</p>
+                    </div>
+                  </div>
+
+                  <div className="contact-item">
+                    <div className="contact-icon">✉️</div>
+                    <div className="contact-text">
+                      <h5>Email Address</h5>
+                      <p>info@baranwalsamaj.org<br />contact@baranwalsamaj.org</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="footer-section links">
-            <h3 className="footer-title">Quick Links</h3>
-            <ul className="footer-links">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/members">Members</Link></li>
-              <li><Link href="/committee">Committee</Link></li>
-              <li><Link href="/events">Events</Link></li>
-              <li><Link href="/matrimony">Matrimony</Link></li>
-              <li><Link href="/gallery">Gallery</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-section contact">
-            <h3 className="footer-title">Contact Us</h3>
-            <div className="contact-info">
-              <div className="contact-item">
-                <i className="fas fa-map-marker-alt"></i>
-                <p>123 Community Avenue, City, State, Country</p>
+          {/* Footer Bottom */}
+          <div className="footer-bottom">
+            <div className="footer-bottom-content">
+              <div className="footer-legal">
+                <p>&copy; {currentYear} Baranwal Samaj. All rights reserved.</p>
+                <div className="legal-links">
+                  <Link href="/privacy">Privacy Policy</Link>
+                  <span className="separator">•</span>
+                  <Link href="/terms">Terms of Service</Link>
+                  <span className="separator">•</span>
+                  <Link href="/cookies">Cookie Policy</Link>
+                  <span className="separator">•</span>
+                  <Link href="/sitemap">Sitemap</Link>
+                </div>
               </div>
-              <div className="contact-item">
-                <i className="fas fa-phone"></i>
-                <p>+1 (123) 456-7890</p>
-              </div>
-              <div className="contact-item">
-                <i className="fas fa-envelope"></i>
-                <p>info@Baranwal Samajcommunity.org</p>
+              
+              <div className="footer-credits">
+                <p>Made with ❤️ for our community</p>
+                <div className="developer-credit">
+                  <span>Developed by</span>
+                  <Link href="#" className="developer-link">TechTeam Baranwal</Link>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>
-            &copy; {currentYear} Baranwal Samaj. All rights reserved.
-          </p>
-          <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Sitemap</a>
           </div>
         </div>
       </div>
+
+      {/* Floating Elements */}
+      {/* <div className="footer-floating-elements">
+        <div className="floating-shape shape-1"></div>
+        <div className="floating-shape shape-2"></div>
+        <div className="floating-shape shape-3"></div>
+      </div> */}
+      <hr></hr>
     </footer>
   );
 };
 
 export default Footer;
-

@@ -1,175 +1,430 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import './CommitteePage.css';
 
 const CommitteePage = () => {
-  // Example data for committee members
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterPosition, setFilterPosition] = useState('');
+
+  // Real committee members data from Baranwal Samaj
   const committeeMembers = [
     {
       id: 1,
-      name: 'John Doe',
+      name: 'Dilipkumar Harihar Prasad Baranwal',
       position: 'President',
+      age: 69,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Chawl No. 18, Prem Nagar, Om Sai Seva Mandal, Unnat Nagar, Road No. 2, Goregaon (W), Mumbai - 400104',
+      mobile: '9029995599',
+      email: 'president@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'John has served as president for 3 years, bringing 15 years of community leadership experience. He focuses on strategic planning and community growth.',
-      email: 'john.doe@example.com',
-      phone: '(123) 456-7890',
+      bio: 'Leading the community with dedication and vision for over a decade. Focused on strengthening cultural bonds and community development.'
     },
     {
       id: 2,
-      name: 'Jane Smith',
+      name: 'Tulsidas Ramsaran Baranwal',
       position: 'Vice President',
+      age: 52,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Room no. 889, Sangam Nagar, S.P Road, Near Police Chouki, Wadala, Antop Hill, Mumbai - 400037',
+      mobile: '8928088448',
+      email: 'vicepresident@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Jane works closely with the president to oversee day-to-day operations and lead special initiatives to strengthen our community bonds.',
-      email: 'jane.smith@example.com',
-      phone: '(123) 456-7891',
+      bio: 'Supporting the president in strategic decisions and overseeing day-to-day community operations.'
     },
     {
       id: 3,
-      name: 'Michael Brown',
-      position: 'Treasurer',
+      name: 'Pramod Gopal Baranwal',
+      position: 'Secretary',
+      age: 50,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Flat no. G/3 Ground Floor, OM Krupa CHS LTD, Marve Road, Opp. Bafira Nagar, Near Fire Bridge, Lower Kharodi, Malad (West), Mumbai - 400095',
+      mobile: '9223224808',
+      email: 'pramodgbaranwal@gmail.com',
       image: '/api/placeholder/300/300',
-      bio: 'Michael manages our finances, budgeting, and fundraising efforts to ensure the sustainability of our community programs.',
-      email: 'michael.brown@example.com',
-      phone: '(123) 456-7892',
+      bio: 'Managing all documentation, communications, and ensuring proper record-keeping for the community.'
     },
     {
       id: 4,
-      name: 'Sarah Williams',
-      position: 'Secretary',
+      name: 'Anandkumar Sadhuram Baranwal',
+      position: 'Joint Secretary',
+      age: 64,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Room No. 461/2, Salt Pan Road, Manurwadi Antop Hill, Wadala (East), Mumbai - 400037',
+      mobile: '8080967446',
+      email: 'jointsecretary@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Sarah handles communications, record-keeping, and documentation of all community meetings and events.',
-      email: 'sarah.williams@example.com',
-      phone: '(123) 456-7893',
+      bio: 'Assisting the secretary in administrative duties and supporting community initiatives.'
     },
     {
       id: 5,
-      name: 'David Wilson',
-      position: 'Cultural Affairs',
+      name: 'Brijeshkumar Harakchand Baranwal',
+      position: 'Treasurer',
+      age: 45,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Room No.15, Shiv Shankar Welfare Society, Prem Nagar, Near Sharmila Hotel, Goregaon (West), Mumbai - 400104',
+      mobile: '9819938236',
+      email: 'treasurer@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'David leads initiatives to preserve and promote our cultural heritage through events, education, and documentation.',
-      email: 'david.wilson@example.com',
-      phone: '(123) 456-7894',
+      bio: 'Managing finances, budgeting, and ensuring transparent financial operations for the community.'
     },
     {
       id: 6,
-      name: 'Emily Davis',
-      position: 'Education Director',
+      name: 'Mahadeo Bamshankar Prasad',
+      position: 'Joint Treasurer',
+      age: 64,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Flat No.104, A wing Subharsh CHS Ltd, Plot No. 32, Sector 11, Kamothe Navi Mumbai, Kalamboli Node, Raighar, Maharashtra - 410218',
+      mobile: '8850169173',
+      email: 'jointtreasurer@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Emily oversees educational programs for community members of all ages, from language classes to skill development workshops.',
-      email: 'emily.davis@example.com',
-      phone: '(123) 456-7895',
+      bio: 'Supporting financial management and assisting in budget planning and execution.'
     },
     {
       id: 7,
-      name: 'Robert Johnson',
-      position: 'Youth Coordinator',
+      name: 'Vishalkumar Binokumar Baranwal',
+      position: 'Member',
+      age: 62,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'B/203, Orchid, Bld-10, Agarwal Doshi Complex, Opp. Sai Baba Mandir, Kauls Heritage city, Bhabola, Bassein Road, Vasai (West), Thane - 401202',
+      mobile: '9819596939',
+      email: 'member1@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Robert designs and implements programs specifically for young community members, focusing on leadership and cultural connection.',
-      email: 'robert.johnson@example.com',
-      phone: '(123) 456-7896',
+      bio: 'Contributing to community welfare and participating in various social initiatives.'
     },
     {
       id: 8,
-      name: 'Lisa Martinez',
-      position: 'Senior Affairs',
+      name: 'Ramjit Ramsundar Gupta',
+      position: 'Member',
+      age: 65,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Room No. 6, Chacha Dhume Chawl, Road No. 1, Pahadi School, Goregaon (East), Mumbai - 400063',
+      mobile: '7738757206',
+      email: 'member2@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Lisa advocates for the needs of elderly members and coordinates support services and social activities for seniors.',
-      email: 'lisa.martinez@example.com',
-      phone: '(123) 456-7897',
+      bio: 'Active participant in community events and cultural preservation activities.'
     },
     {
       id: 9,
-      name: 'Thomas Clark',
-      position: 'Events Coordinator',
+      name: 'Krishna Rambriksh Baranwal',
+      position: 'Member',
+      age: 35,
+      occupation: 'Service',
+      nationality: 'Indian',
+      address: 'Room No. 2, Shri Niwas Chawl, Shivji Nagar, Near Sairam Apartment, Naupada, Thane (West), Maharashtra - 400602',
+      mobile: '9987130673',
+      email: 'member3@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
-      bio: 'Thomas plans and organizes community gatherings, celebrations, and other events throughout the year.',
-      email: 'thomas.clark@example.com',
-      phone: '(123) 456-7898',
+      bio: 'Young leader bringing fresh perspectives and energy to community development.'
     },
+    {
+      id: 10,
+      name: 'Subhashchandra Ramkaran Baranwal',
+      position: 'Member',
+      age: 57,
+      occupation: 'Service',
+      nationality: 'Indian',
+      address: 'B205, Avantika Apartment, Chandansar Road, Behind Balchandra Nagar, Virar (East), Vasai, Palghar, Maharashtra - 401305',
+      mobile: '9960021788',
+      email: 'member4@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Dedicated to social service and community outreach programs.'
+    },
+    {
+      id: 11,
+      name: 'Ajay Jagatnarayan Baranwal',
+      position: 'Member',
+      age: 55,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Khadavla Apartment, Market Road, Boisar, Nawapur Boisar Thane, Maharashtra - 401501',
+      mobile: '9892152558',
+      email: 'member5@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Supporting business development initiatives and entrepreneurship within the community.'
+    },
+    {
+      id: 12,
+      name: 'Deepkumar Shatrudhan Hiralal Baranwal Gupta',
+      position: 'Member',
+      age: 74,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'PA/307, Malwani Satyam CO-OP Housing Society Ltd, New Mahada, Jankalyan Nagar, Nr. Bhoomi Park, Malad (West), Mumbai - 400095',
+      mobile: '7870868601',
+      email: 'member6@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Senior member providing wisdom and guidance to the community leadership.'
+    },
+    {
+      id: 13,
+      name: 'Abhinavkumar Shiv Kumarprasad Gupta',
+      position: 'Member',
+      age: 64,
+      occupation: 'Service',
+      nationality: 'Indian',
+      address: '1401, Evergreen A RODAS Enclave, Ghodbunder Road, Pilipada, Hiranandani Estate, Thane, Maharashtra - 400607',
+      mobile: '9867301169',
+      email: 'member7@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Contributing expertise in public service and community administration.'
+    },
+    {
+      id: 14,
+      name: 'Ramprasad Shrinath Shah',
+      position: 'Member',
+      age: 55,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: 'Room No.6, Rati Vihar Bld, Aarey Road, Near Asarambapu Ashram Pagru Baug, Goregaon (East), Mumbai - 400063',
+      mobile: '9819530553',
+      email: 'member8@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Involved in cultural activities and heritage preservation initiatives.'
+    }
   ];
+
+  // Filter committee members based on search and position filter
+  const filteredMembers = committeeMembers.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         member.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         member.occupation.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesPosition = filterPosition === '' || member.position === filterPosition;
+    
+    return matchesSearch && matchesPosition;
+  });
+
+  // Separate executive and general members
+  const executivePositions = ['President', 'Vice President', 'Secretary', 'Joint Secretary', 'Treasurer', 'Joint Treasurer'];
+  const executiveMembers = filteredMembers.filter(member => 
+    executivePositions.includes(member.position)
+  );
+  const generalMembers = filteredMembers.filter(member => 
+    member.position === 'Member'
+  );
 
   return (
     <div className="committee-page">
+      {/* Page Header */}
       <div className="page-header">
-        <div className="container">
-          <h1 className="page-title">Our Committee</h1>
-          <p className="page-description">
-            Meet the dedicated individuals who lead our community and work tirelessly to fulfill our mission.
-          </p>
+        <div className="header-content">
+          <div className="header-text">
+            <h1 className="page-title">Our Committee</h1>
+            <p className="page-description">
+              Meet the dedicated leaders who guide our community and work tirelessly to preserve our heritage and strengthen our bonds.
+            </p>
+            <div className="header-actions">
+              <Link href="/members" className="btn btn-primary">
+                <span>View All Members</span>
+                <i className="btn-icon">👥</i>
+              </Link>
+              <Link href="/contact" className="btn btn-secondary">
+                <span>Contact Committee</span>
+                <i className="btn-icon">📞</i>
+              </Link>
+            </div>
+          </div>
+          <div className="header-stats">
+            <div className="stat-card">
+              <div className="stat-number">{committeeMembers.length}</div>
+              <div className="stat-label">Committee Members</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">6</div>
+              <div className="stat-label">Executive Positions</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">25+</div>
+              <div className="stat-label">Years of Service</div>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <section className="section">
+
+      {/* Committee Directory Section */}
+      <section className="committee-directory-section">
         <div className="container">
-          <div className="committee-intro">
-            <h2>Executive Committee</h2>
-            <p>
-              Our executive committee is elected by community members to serve two-year terms. 
-              They meet monthly to discuss and decide on matters affecting our community, plan events, 
-              and oversee various initiatives.
+          <div className="section-header">
+            <h2 className="section-title">Committee Directory</h2>
+            <p className="section-subtitle">
+              Our elected representatives working to serve the community with dedication and transparency
             </p>
           </div>
-          
-          <div className="committee-grid grid-3">
-            {committeeMembers.slice(0, 4).map((member) => (
-              <div className="committee-card" key={member.id}>
-                <div className="committee-image-container">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={300}
-                    height={300}
-                    className="committee-image"
-                  />
-                </div>
-                <div className="committee-details">
-                  <h3 className="committee-name">{member.name}</h3>
-                  <p className="committee-position">{member.position}</p>
-                  <p className="committee-bio">{member.bio}</p>
-                  <div className="committee-contact">
-                    <p><strong>Email:</strong> {member.email}</p>
-                    <p><strong>Phone:</strong> {member.phone}</p>
-                  </div>
-                </div>
+
+          {/* Search and Filters */}
+          <div className="directory-controls">
+            <div className="search-box">
+              <i className="search-icon">🔍</i>
+              <input
+                type="text"
+                placeholder="Search by name, position, or occupation..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+            </div>
+            
+            <div className="filters">
+              <select
+                value={filterPosition}
+                onChange={(e) => setFilterPosition(e.target.value)}
+                className="filter-select"
+              >
+                <option value="">All Positions</option>
+                <option value="President">President</option>
+                <option value="Vice President">Vice President</option>
+                <option value="Secretary">Secretary</option>
+                <option value="Joint Secretary">Joint Secretary</option>
+                <option value="Treasurer">Treasurer</option>
+                <option value="Joint Treasurer">Joint Treasurer</option>
+                <option value="Member">Member</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Executive Committee */}
+          {executiveMembers.length > 0 && (
+            <div className="committee-section">
+              <div className="committee-intro">
+                <h2>Executive Committee</h2>
+                <p>
+                  Our executive committee is elected by community members to serve terms of office. 
+                  They meet regularly to discuss and decide on matters affecting our community, plan events, 
+                  and oversee various initiatives.
+                </p>
               </div>
-            ))}
-          </div>
-          
-          <div className="committee-intro">
-            <h2>Department Heads</h2>
-            <p>
-              These individuals lead specific areas of community activity, bringing their expertise 
-              and passion to their respective domains.
-            </p>
-          </div>
-          
-          <div className="committee-grid grid-3">
-            {committeeMembers.slice(4).map((member) => (
-              <div className="committee-card" key={member.id}>
-                <div className="committee-image-container">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={300}
-                    height={300}
-                    className="committee-image"
-                  />
-                </div>
-                <div className="committee-details">
-                  <h3 className="committee-name">{member.name}</h3>
-                  <p className="committee-position">{member.position}</p>
-                  <p className="committee-bio">{member.bio}</p>
-                  <div className="committee-contact">
-                    <p><strong>Email:</strong> {member.email}</p>
-                    <p><strong>Phone:</strong> {member.phone}</p>
+              
+              <div className="committee-grid">
+                {executiveMembers.map((member) => (
+                  <div className="committee-card" key={member.id}>
+                    <div className="committee-image-container">
+                      <div className="member-avatar-large">
+                        {member.name.charAt(0)}
+                      </div>
+                      <div className="position-badge">
+                        {member.position}
+                      </div>
+                    </div>
+                    <div className="committee-details">
+                      <h3 className="committee-name">{member.name}</h3>
+                      <div className="member-info">
+                        <div className="info-row">
+                          <span className="info-label">Age:</span>
+                          <span className="info-value">{member.age} years</span>
+                        </div>
+                        <div className="info-row">
+                          <span className="info-label">Occupation:</span>
+                          <span className="occupation-tag">{member.occupation}</span>
+                        </div>
+                        <div className="info-row">
+                          <span className="info-label">Nationality:</span>
+                          <span className="nationality-badge">{member.nationality}</span>
+                        </div>
+                      </div>
+                      <p className="committee-bio">{member.bio}</p>
+                      <div className="committee-contact">
+                        <div className="contact-item">
+                          <i className="contact-icon">📧</i>
+                          <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
+                        </div>
+                        <div className="contact-item">
+                          <i className="contact-icon">📱</i>
+                          <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
+                        </div>
+                      </div>
+                      <div className="address-section">
+                        <i className="address-icon">📍</i>
+                        <p className="member-address">{member.address}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
+          
+          {/* General Members */}
+          {generalMembers.length > 0 && (
+            <div className="committee-section">
+              <div className="committee-intro">
+                <h2>Committee Members</h2>
+                <p>
+                  These dedicated individuals contribute their time, expertise, and passion to serve 
+                  the community in various capacities and support our collective goals.
+                </p>
+              </div>
+              
+              <div className="committee-grid">
+                {generalMembers.map((member) => (
+                  <div className="committee-card" key={member.id}>
+                    <div className="committee-image-container">
+                      <div className="member-avatar-large">
+                        {member.name.charAt(0)}
+                      </div>
+                      <div className="position-badge member-badge">
+                        {member.position}
+                      </div>
+                    </div>
+                    <div className="committee-details">
+                      <h3 className="committee-name">{member.name}</h3>
+                      <div className="member-info">
+                        <div className="info-row">
+                          <span className="info-label">Age:</span>
+                          <span className="info-value">{member.age} years</span>
+                        </div>
+                        <div className="info-row">
+                          <span className="info-label">Occupation:</span>
+                          <span className="occupation-tag">{member.occupation}</span>
+                        </div>
+                        <div className="info-row">
+                          <span className="info-label">Nationality:</span>
+                          <span className="nationality-badge">{member.nationality}</span>
+                        </div>
+                      </div>
+                      <p className="committee-bio">{member.bio}</p>
+                      <div className="committee-contact">
+                        <div className="contact-item">
+                          <i className="contact-icon">📧</i>
+                          <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
+                        </div>
+                        <div className="contact-item">
+                          <i className="contact-icon">📱</i>
+                          <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
+                        </div>
+                      </div>
+                      <div className="address-section">
+                        <i className="address-icon">📍</i>
+                        <p className="member-address">{member.address}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {filteredMembers.length === 0 && (
+            <div className="no-results">
+              <div className="no-results-icon">🔍</div>
+              <h3>No committee members found</h3>
+              <p>Try adjusting your search criteria or filters</p>
+            </div>
+          )}
         </div>
       </section>
       
-      <section className="section organizational-structure">
+      {/* Organizational Structure */}
+      <section className="organizational-structure">
         <div className="container">
           <h2 className="section-title">Organizational Structure</h2>
           <div className="organization-chart">
@@ -180,7 +435,7 @@ const CommitteePage = () => {
               </div>
             </div>
             
-            <div className="chart-arrow"></div>
+            <div className="chart-arrow">↓</div>
             
             <div className="chart-level">
               <div className="chart-box chart-box-secondary">
@@ -189,20 +444,20 @@ const CommitteePage = () => {
               </div>
             </div>
             
-            <div className="chart-arrow"></div>
+            <div className="chart-arrow">↓</div>
             
             <div className="chart-level chart-level-departments">
               <div className="chart-box">
                 <h3>Cultural Affairs</h3>
               </div>
               <div className="chart-box">
+                <h3>Social Welfare</h3>
+              </div>
+              <div className="chart-box">
                 <h3>Education</h3>
               </div>
               <div className="chart-box">
-                <h3>Youth</h3>
-              </div>
-              <div className="chart-box">
-                <h3>Senior Affairs</h3>
+                <h3>Youth Affairs</h3>
               </div>
               <div className="chart-box">
                 <h3>Events</h3>
@@ -211,16 +466,33 @@ const CommitteePage = () => {
           </div>
           
           <div className="elections-info">
-            <h3>Committee Elections</h3>
+            <h3>Committee Elections & Governance</h3>
+              <Link href="/join" className="btn btn-primary large">
+                <span>Official Document</span>
+                <i className="btn-icon">📋</i>
+              </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Join CTA Section */}
+      <section className="join-cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Get Involved with Our Community</h2>
             <p>
-              Elections for committee positions are held every two years in April. 
-              All community members in good standing are eligible to vote and run for positions. 
-              The next election will be held in April 2026.
+              Join us in our mission to preserve our heritage, strengthen our bonds, and create a better future for our community.
             </p>
-            <p>
-              If you are interested in serving on the committee or have questions about the election process, 
-              please contact our current Secretary at secretary@Baranwal Samajcommunity.org.
-            </p>
+            <div className="cta-actions">
+              <Link href="/join" className="btn btn-primary large">
+                <span>Become a Member</span>
+                <i className="btn-icon">📋</i>
+              </Link>
+              <Link href="/contact" className="btn btn-outline large">
+                <span>Contact Committee</span>
+                <i className="btn-icon">💬</i>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
