@@ -15,10 +15,10 @@ const AchievementsSection = () => {
     {
       id: 1,
       type: 'Sports Excellence',
-      name: 'Master/Miss [Name]',
+      name: 'Aadya Baranwal',
       title: '3-Time Guinness World Record Holder',
       subtitle: 'Endurance National Championship Qualifier',
-      description: 'Our community proudly supported this exceptional athlete who achieved remarkable success in the Endurance National Championship 2024-25. Selected to represent India in the Endurance Afro-Asian Championship, this achievement showcases the sporting excellence within our Baranwal Samaj family.',
+      description: 'Our community proudly supported this exceptional athlete who achieved remarkable success in the Endurance National Championship 2024-25. Selected to represent India in the Endurance Afro-Asian Championship, this achievement showcases the sporting excellence within our Baranwal Ekta Sanstha family.',
       achievement: 'Selected for International Championship',
       location: 'Maharashtra, India',
       date: 'June 5-8, 2025',
@@ -30,13 +30,14 @@ const AchievementsSection = () => {
         'Afro-Asian Championship Qualifier'
       ],
       images: [
-        '/images/achievement-1-1.jpg',
-        '/images/achievement-1-2.jpg',
-        '/images/achievement-1-3.jpg'
+        '/images/achievement-1-1.png',
+        '/images/achievement-1-2.png',
+        '/images/achievement-1-3.png'
       ],
       color: '#007bff',
       icon: '🏆',
-      category: 'Sports'
+      category: 'Sports',
+      link: 'https://drive.google.com/file/d/11KYKZuc8dsWlykMBQ0VUODnv1lGGlt-E/view?usp=sharing'
     },
     {
       id: 2,
@@ -56,13 +57,14 @@ const AchievementsSection = () => {
         'Acclaimed for Nuanced Storytelling'
       ],
       images: [
-        '/images/achievement-2-1.jpg',
-        '/images/achievement-2-2.jpg',
-        '/images/achievement-2-3.jpg'
+        '/images/achievement-2-1.png',
+        '/images/achievement-2-2.png',
+        '/images/achievement-2-3.png'
       ],
       color: '#ffc107',
       icon: '🎬',
-      category: 'Arts'
+      category: 'Arts',
+      link: 'https://www.imdb.com/name/nm2426355/'
     }
   ];
 
@@ -157,7 +159,7 @@ const AchievementsSection = () => {
           <h2 className="section-title">Our Achievements</h2>
           <br></br>
           <p className="section-subtitle">
-            Celebrating the remarkable accomplishments of Baranwal Samaj members who bring honor to our community
+            Celebrating the remarkable accomplishments of Baranwal Ekta Sanstha members who bring honor to our community
           </p>
         </div>
 
@@ -232,16 +234,12 @@ const AchievementsSection = () => {
 
                         <div className="achievement-actions">
                           <Link 
-                            href={`/achievements/${achievement.id}`} 
+                            href={`${achievement.link}`} target='blank'
                             className="btn btn-primary"
                             style={{ backgroundColor: achievement.color }}
                           >
                             <span>Read More</span>
                             <i className="btn-arrow">→</i>
-                          </Link>
-                          <Link href="/achievements" className="btn btn-secondary">
-                            <span>View All</span>
-                            <i className="btn-icon">📋</i>
                           </Link>
                         </div>
                       </div>
@@ -256,39 +254,127 @@ const AchievementsSection = () => {
                         </span>
                       </div>
                       
-                      <div className="image-showcase">
-                        <div className="main-image">
+                      <div 
+                        className="image-showcase"
+                        style={{
+                          display: 'grid',
+                          gridTemplateColumns: '1fr 1fr',
+                          gridTemplateRows: 'auto auto',
+                          gap: '12px',
+                          height: '100%'
+                        }}
+                      >
+                        {/* Main image - takes up left column, both rows */}
+                        <div 
+                          style={{ 
+                            position: 'relative',
+                            gridColumn: '1',
+                            gridRow: '1 / 3',
+                            height: '300px',
+                            borderRadius: '12px',
+                            overflow: 'hidden',
+                            border: `3px solid ${achievement.color}`,
+                            boxShadow: `0 8px 25px ${achievement.color}30`
+                          }}
+                        >
+                          <Image
+                            src={achievement.images[0]}
+                            alt={`${achievement.name} - Main Achievement`}
+                            fill
+                            style={{
+                              objectFit: 'cover',
+                              objectPosition: 'center'
+                            }}
+                            sizes="(max-width: 768px) 100vw, 40vw"
+                            onError={(e) => {
+                              // Fallback if image fails to load
+                              e.target.style.display = 'none';
+                              e.target.nextSibling.style.display = 'flex';
+                            }}
+                          />
+                          {/* Fallback content */}
                           <div 
-                            className="image-placeholder main-img"
-                            style={{ 
+                            style={{
+                              display: 'none',
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
                               background: `linear-gradient(135deg, ${achievement.color}30, ${achievement.color}50)`,
-                              borderColor: achievement.color 
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              flexDirection: 'column',
+                              color: achievement.color,
+                              textAlign: 'center',
+                              padding: '20px'
                             }}
                           >
-                            <div className="image-content">
-                              <div className="image-icon" style={{ color: achievement.color }}>
-                                {achievement.icon}
-                              </div>
-                              <h5>{achievement.category}</h5>
-                              <p>Main Achievement Photo</p>
+                            <div style={{ fontSize: '3rem', marginBottom: '10px' }}>
+                              {achievement.icon}
                             </div>
+                            <h5 style={{ margin: '5px 0', fontSize: '1.1rem' }}>
+                              {achievement.category}
+                            </h5>
+                            <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.8 }}>
+                              Main Achievement Photo
+                            </p>
                           </div>
                         </div>
                         
-                        <div className="thumbnail-grid">
-                          {achievement.images.slice(1).map((img, idx) => (
+                        {/* Thumbnail images - take up right column */}
+                        {achievement.images.slice(1).map((img, idx) => (
+                          <div 
+                            key={idx}
+                            style={{ 
+                              position: 'relative',
+                              gridColumn: '2',
+                              gridRow: `${idx + 1}`,
+                              height: '300px',
+                              borderRadius: '8px',
+                              overflow: 'hidden',
+                              border: `2px solid ${achievement.color}`,
+                              boxShadow: `0 4px 12px ${achievement.color}20`,
+                              justifyContent: 'center',
+                              alignContent: 'center',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <Image
+                              src={img}
+                              alt={`${achievement.name} - Gallery ${idx + 2}`}
+                              fill
+                              style={{
+                                objectFit: 'cover',
+                                objectPosition: 'center'
+                              }}
+                              sizes="(max-width: 768px) 80vw, 80vw"
+                              onError={(e) => {
+                                // Fallback if image fails to load
+                                e.target.style.display = 'none';
+                                e.target.nextSibling.style.display = 'flex';
+                              }}
+                            />
+                            {/* Fallback content */}
                             <div 
-                              key={idx}
-                              className="thumbnail-placeholder"
-                              style={{ 
+                              style={{
+                                display: 'none',
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
                                 background: `linear-gradient(45deg, ${achievement.color}20, ${achievement.color}40)`,
-                                borderColor: achievement.color 
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: achievement.color,
+                                fontSize: '1.5rem'
                               }}
                             >
-                              <span className="thumb-icon">📸</span>
+                              📸
                             </div>
-                          ))}
-                        </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

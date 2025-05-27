@@ -5,120 +5,99 @@ import Image from 'next/image';
 import './GalleryPage.css';
 
 const GalleryPage = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
   const [activeImage, setActiveImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(new Set());
   const galleryRef = useRef(null);
   const observerRef = useRef(null);
 
-  // Example gallery images with categories
+  // Example gallery images
   const galleryImages = [
-    {
-      id: 1,
-      title: 'Annual Festival 2024',
-      src: '/api/placeholder/600/400',
-      category: 'events',
-      description: 'Celebration of our cultural heritage with performances, food, and activities.',
-      date: 'April 15, 2024',
-    },
-    {
-      id: 2,
-      title: 'Community Service Day',
-      src: '/api/placeholder/600/400',
-      category: 'service',
-      description: 'Members volunteering at the local food bank and community garden.',
-      date: 'March 22, 2024',
-    },
-    {
-      id: 3,
-      title: 'Youth Program Graduation',
-      src: '/api/placeholder/600/400',
-      category: 'youth',
-      description: 'Celebrating our young members completing leadership training.',
-      date: 'February 18, 2024',
-    },
-    {
-      id: 4,
-      title: 'Cultural Dance Performance',
-      src: '/api/placeholder/600/400',
-      category: 'culture',
-      description: 'Traditional dances performed at the community center.',
-      date: 'January 30, 2024',
-    },
-    {
-      id: 5,
-      title: 'Seniors Reunion',
-      src: '/api/placeholder/600/400',
-      category: 'seniors',
-      description: 'Annual gathering of our respected elders sharing stories and wisdom.',
-      date: 'December 12, 2023',
-    },
-    {
-      id: 6,
-      title: 'Community Center Opening',
-      src: '/api/placeholder/600/400',
-      category: 'events',
-      description: 'Inauguration of our new community center building.',
-      date: 'November 5, 2023',
-    },
-    {
-      id: 7,
-      title: 'Traditional Cooking Workshop',
-      src: '/api/placeholder/600/400',
-      category: 'culture',
-      description: 'Learning ancestral recipes and cooking techniques.',
-      date: 'October 25, 2023',
-    },
-    {
-      id: 8,
-      title: 'Youth Sports Tournament',
-      src: '/api/placeholder/600/400',
-      category: 'youth',
-      description: 'Annual sports competition for young community members.',
-      date: 'September 18, 2023',
-    },
-    {
-      id: 9,
-      title: 'Elders Appreciation Day',
-      src: '/api/placeholder/600/400',
-      category: 'seniors',
-      description: 'Honoring the contributions of our community elders.',
-      date: 'August 30, 2023',
-    },
-    {
-      id: 10,
-      title: 'Neighborhood Cleanup',
-      src: '/api/placeholder/600/400',
-      category: 'service',
-      description: 'Community-led initiative to beautify our local area.',
-      date: 'July 15, 2023',
-    },
-    {
-      id: 11,
-      title: 'Summer Festival',
-      src: '/api/placeholder/600/400',
-      category: 'events',
-      description: 'Annual summer celebration with games, food, and performances.',
-      date: 'June 24, 2023',
-    },
-    {
-      id: 12,
-      title: 'Language Classes',
-      src: '/api/placeholder/600/400',
-      category: 'culture',
-      description: 'Community members learning our ancestral language.',
-      date: 'May 10, 2023',
-    },
-  ];
-  
-  // Get unique categories for filter
-  const categories = ['all', ...new Set(galleryImages.map(img => img.category))];
-  
-  // Filter images based on active category
-  const filteredImages = activeCategory === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeCategory);
+  {
+    id: 1,
+    title: 'Annual Festival 2024',
+    href: '/gallery/image (1).png',
+    description: 'Celebration of our cultural heritage with performances, food, and activities.',
+    date: 'April 15, 2024',
+  },
+  {
+    id: 2,
+    title: 'Community Service Day',
+    href: '/gallery/image (2).png',
+    description: 'Members volunteering at the local food bank and community garden.',
+    date: 'March 22, 2024',
+  },
+  {
+    id: 3,
+    title: 'Youth Program Graduation',
+    href: '/gallery/image (3).png',
+    description: 'Celebrating our young members completing leadership training.',
+    date: 'February 18, 2024',
+  },
+  {
+    id: 4,
+    title: 'Cultural Dance Performance',
+    href: '/gallery/image (4).png',
+    description: 'Traditional dances performed at the community center.',
+    date: 'January 30, 2024',
+  },
+  {
+    id: 5,
+    title: 'Seniors Reunion',
+    href: '/gallery/image (5).png',
+    description: 'Annual gathering of our respected elders sharing stories and wisdom.',
+    date: 'December 12, 2023',
+  },
+  {
+    id: 6,
+    title: 'Community Center Opening',
+    href: '/gallery/image (6).png',
+    description: 'Inauguration of our new community center building.',
+    date: 'November 5, 2023',
+  },
+  {
+    id: 7,
+    title: 'Traditional Cooking Workshop',
+    href: '/gallery/image (7).png',
+    description: 'Learning ancestral recipes and cooking techniques.',
+    date: 'October 25, 2023',
+  },
+  {
+    id: 8,
+    title: 'Youth Sports Tournament',
+    href: '/gallery/image (8).png',
+    description: 'Annual sports competition for young community members.',
+    date: 'September 18, 2023',
+  },
+  {
+    id: 9,
+    title: 'Elders Appreciation Day',
+    href: '/gallery/image (9).png',
+    description: 'Honoring the contributions of our community elders.',
+    date: 'August 30, 2023',
+  },
+  {
+    id: 10,
+    title: 'Neighborhood Cleanup',
+    href: '/gallery/image (10).png',
+    description: 'Community-led initiative to beautify our local area.',
+    date: 'July 15, 2023',
+  },
+  {
+    id: 11,
+    title: 'Summer Festival',
+    href: '/gallery/image (11).png',
+    description: 'Annual summer celebration with games, food, and performances.',
+    date: 'June 24, 2023',
+  },
+  {
+    id: 12,
+    title: 'Language Classes',
+    href: '/gallery/image (12).png',
+    description: 'Community members learning our ancestral language.',
+    date: 'May 10, 2023',
+  },
+];
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -151,7 +130,7 @@ const GalleryPage = () => {
         observerRef.current.observe(item);
       });
     }
-  }, [filteredImages]);
+  }, [galleryImages]);
 
   // Loading simulation
   useEffect(() => {
@@ -161,12 +140,6 @@ const GalleryPage = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Handle category change with smooth transition
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-    setVisibleItems(new Set()); // Reset visible items for new animation
-  };
 
   const openLightbox = (id) => {
     setActiveImage(id);
@@ -220,23 +193,8 @@ const GalleryPage = () => {
       
       <section className="section">
         <div className="container">
-          <div className="gallery-filters">
-            <p>Filter by category:</p>
-            <div className="filter-buttons">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
-                  onClick={() => handleCategoryChange(category)}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-          
           <div className="gallery-grid" ref={galleryRef}>
-            {filteredImages.map((image, index) => (
+            {galleryImages.map((image, index) => (
               <div 
                 key={image.id}
                 data-id={image.id}
@@ -248,7 +206,7 @@ const GalleryPage = () => {
               >
                 <div className="gallery-image-container">
                   <Image
-                    src={image.src}
+                    src={image.href}
                     alt={image.title}
                     width={600}
                     height={400}
@@ -263,9 +221,6 @@ const GalleryPage = () => {
                 </div>
                 <div className="gallery-item-overlay">
                   <h3 className="gallery-item-title">{image.title}</h3>
-                  <p className="gallery-item-category">
-                    {image.category.charAt(0).toUpperCase() + image.category.slice(1)}
-                  </p>
                   <p className="gallery-item-date">{image.date}</p>
                 </div>
               </div>
@@ -300,7 +255,7 @@ const GalleryPage = () => {
               &#8250;
             </button>
             <Image
-              src={currentImage.src}
+              src={currentImage.href}
               alt={currentImage.title}
               width={900}
               height={600}
@@ -325,7 +280,7 @@ const GalleryPage = () => {
           <div className="upload-container">
             <h2>Share Your Photos</h2>
             <p>
-              Have photos from a recent Baranwal Samaj event? Share them with us to be featured in our gallery!
+              Have photos from a recent Baranwal Ekta Sanstha event? Share them with us to be featured in our gallery!
             </p>
             <button className="btn" onClick={() => {
               // Add your upload functionality here

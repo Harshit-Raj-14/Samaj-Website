@@ -44,7 +44,7 @@ const MembersSection = () => {
         <div className="members-intro">
           <p>
             Our community is made up of dedicated individuals who contribute 
-            their time, expertise, and passion to make Baranwal Samaj a vibrant and 
+            their time, expertise, and passion to make Baranwal Ekta Sanstha a vibrant and 
             supportive organization for all. Here are some of our featured members.
           </p>
         </div>

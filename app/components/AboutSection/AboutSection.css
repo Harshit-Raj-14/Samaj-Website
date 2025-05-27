@@ -77,7 +77,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: start; /* Changed from center to start */
+  align-items: start;
   margin-top: 3rem;
 }
 
@@ -93,9 +93,6 @@
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 3rem;
-  opacity: 1;
-  transform: translateY(0);
-  transition: none;
 }
 
 .stat {
@@ -142,13 +139,11 @@
   letter-spacing: 0.5px;
 }
 
-/* CTA Buttons */
+/* CTA Buttons - Fixed visibility issue */
 .about-cta {
   margin-top: 2rem;
-  opacity: 1;
-  transform: translateY(0);
-  transition: none;
   text-align: center;
+  /* Removed conflicting opacity and transform properties */
 }
 
 .about-cta .btn {
@@ -165,6 +160,9 @@
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+  /* Ensure buttons are visible */
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .btn-primary {
@@ -180,7 +178,7 @@
 }
 
 .btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
@@ -189,25 +187,73 @@
   color: white;
 }
 
-/* About Image */
+/* About Image - Updated for actual image */
 .about-image {
   opacity: 0;
   transform: translateX(50px);
   transition: all 0.8s ease 0.2s;
   position: relative;
-  height: 100%; /* Match the height of stats section */
+  height: 100%;
 }
 
 .image-container {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 500px; /* Ensure minimum height */
+  min-height: 650px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Updated image styles for actual image */
+.actual-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.6s ease;
+}
+
+.actual-image:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.heritage-image {
+  border-radius: 20px;
+  transition: all 0.6s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 2rem;
+  border-radius: 0 0 20px 20px;
+  z-index: 2;
+}
+
+.overlay-content h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+/* Fallback placeholder styles (in case image doesn't load) */
 .image-placeholder {
   width: 100%;
   height: 100%;
@@ -220,11 +266,6 @@
   position: relative;
   overflow: hidden;
   transition: all 0.6s ease;
-}
-
-.image-placeholder:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(255, 193, 7, 0.4);
 }
 
 .placeholder-content {
@@ -240,25 +281,13 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.placeholder-text h3 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.placeholder-text p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-}
-
 /* Decorative Elements */
 .image-decoration {
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(135deg, rgba(255, 193, 7, 0.3) 0%, rgba(255, 152, 0, 0.3) 100%);
   animation: float 4s ease-in-out infinite;
+  z-index: 1;
 }
 
 .decoration-1 {
@@ -371,15 +400,11 @@
     height: 350px;
   }
 
-  .placeholder-icon {
-    font-size: 3rem;
-  }
-
-  .placeholder-text h3 {
+  .overlay-content h3 {
     font-size: 1.4rem;
   }
 
-  .placeholder-text p {
+  .overlay-content p {
     font-size: 1rem;
   }
 }

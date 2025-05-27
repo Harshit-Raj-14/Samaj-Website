@@ -6,8 +6,8 @@ import Footer from './components/Footer/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Baranwal Samaj',
-  description: 'Official website of the Baranwal Samaj',
+  title: 'Baranwal Ekta Sanstha',
+  description: 'Official website of the Baranwal Ekta Sanstha',
 };
 
 export default function RootLayout({ children }) {

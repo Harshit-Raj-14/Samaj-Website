@@ -8,7 +8,7 @@ const CommitteePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPosition, setFilterPosition] = useState('');
 
-  // Real committee members data from Baranwal Samaj
+  // Real committee members data from Baranwal Ekta Sanstha
   const committeeMembers = [
     {
       id: 1,
@@ -228,8 +228,8 @@ const CommitteePage = () => {
                 <span>View All Members</span>
                 <i className="btn-icon">👥</i>
               </Link>
-              <Link href="/contact" className="btn btn-secondary">
-                <span>Contact Committee</span>
+              <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-secondary">
+                <span>Committee Info</span>
                 <i className="btn-icon">📞</i>
               </Link>
             </div>

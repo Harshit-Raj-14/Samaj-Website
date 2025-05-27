@@ -42,7 +42,7 @@ const AboutSection = () => {
   // Counter animation function
   const animateCounters = () => {
     const duration = 2000; // 2 seconds
-    const targets = { members: 500, events: 50, years: 25 };
+    const targets = { members: 500, events: 50, years: 20 };
     const startTime = Date.now();
 
     const updateCounters = () => {
@@ -73,15 +73,16 @@ const AboutSection = () => {
       ref={sectionRef}
     >
       <div className="container">
-        <h2 className="section-title">About Baranwal Samaj</h2>
+        <h2 className="section-title">About Us</h2>
         
         {/* Full width text content */}
         <div className="about-text-full">
           <div className="text-content">
+            <br></br>
             <p className="fade-in-text">
-              The Baranwal Samaj was established with a vision to preserve our rich cultural heritage
-              while adapting to a changing world. Over the decades, we have grown into a vibrant
-              organization with hundreds of members across the region.
+              Baranwal Ekta Sanstha Mumbai was founded to unite and empower the Baranwal community in Mumbai, 
+              preserving our rich cultural heritage while fostering a sense of belonging in a rapidly evolving world.  
+              Over the years, we have grown into a vibrant organization with hundreds of members across the region.
             </p>
             <p className="fade-in-text">
               Our community is built on the principles of unity, service, and cultural preservation.
@@ -90,7 +91,7 @@ const AboutSection = () => {
             </p>
             <p className="fade-in-text">
               Whether you're looking to connect with your roots, participate in cultural activities,
-              or simply be part of a supportive community, Baranwal Samaj welcomes you with open arms.
+              or simply be part of a supportive community, Baranwal Ekta Sanstha welcomes you with open arms.
             </p>
           </div>
         </div>
@@ -113,22 +114,74 @@ const AboutSection = () => {
               </div>
             </div>
 
-            <div className="about-cta">
-              <Link href="/members" className="btn btn-primary">
+            <div className="about-cta" style={{ opacity: 1, transform: 'translateY(0)', visibility: 'visible' }}>
+              <Link 
+                href="/members" 
+                className="btn btn-primary"
+                style={{
+                  display: 'inline-block',
+                  opacity: 1,
+                  visibility: 'visible',
+                  transform: 'translateY(0)',
+                  marginRight: '1rem',
+                  marginBottom: '1rem',
+                  padding: '0.8rem 2rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  background: 'linear-gradient(135deg, #007bff 0%, #0056b3 100%)',
+                  color: 'white',
+                  boxShadow: '0 4px 15px rgba(0, 123, 255, 0.3)',
+                  transition: 'all 0.3s ease',
+                  border: 'none'
+                }}
+              >
                 Join Our Community
               </Link>
-              <Link href="/about" className="btn btn-secondary">
-                Learn More
+              <Link 
+                target='_blank' 
+                href="https://drive.google.com/file/d/1Bkwr1Bzm34JOOSw8ViFzYkUTtkYAEVgr/view?usp=sharing" 
+                className="btn btn-secondary"
+                style={{
+                  display: 'inline-block',
+                  opacity: 1,
+                  visibility: 'visible',
+                  transform: 'translateY(0)',
+                  marginRight: '1rem',
+                  marginBottom: '1rem',
+                  padding: '0.8rem 2rem',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px',
+                  background: 'transparent',
+                  color: '#007bff',
+                  border: '2px solid #007bff',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                Certificate of Registration
               </Link>
             </div>
           </div>
 
           <div className="about-image">
             <div className="image-container">
-              <div className="image-placeholder">
-                <div className="placeholder-content">
-                  <div className="placeholder-icon">🏛️</div>
-                  <div className="placeholder-text">
+              <div className="actual-image">
+                <Image
+                  src="/images/about.png" // Replace with your actual image path
+                  alt="Baranwal Ekta Sanstha Heritage"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="heritage-image"
+                />
+                <div className="image-overlay">
+                  <div className="overlay-content">
                     <h3>Our Heritage</h3>
                     <p>Preserving traditions for future generations</p>
                   </div>

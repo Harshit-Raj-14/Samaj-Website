@@ -94,16 +94,11 @@ const ActivitiesSection = () => {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Our Activities</h2>
-          <div className="title-decoration">
-            <div className="decoration-line"></div>
-            <div className="decoration-dot"></div>
-            <div className="decoration-line"></div>
-          </div>
         </div>
        
         <div className="activities-intro">
           <p>
-            At Baranwal Samaj, we organize a wide range of activities throughout
+            At Baranwal Ekta Sanstha, we organize a wide range of activities throughout
             the year to engage our members, preserve our culture, and strengthen
             our bonds. Here are some of our key programs:
           </p>

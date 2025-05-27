@@ -6,7 +6,7 @@ const MatrimonyPage = () => {
     <div className="matrimony-page">
       <div className="page-header matrimony-header">
         <div className="container">
-          <h1 className="page-title">Baranwal Samaj Matrimony</h1>
+          <h1 className="page-title">Baranwal Ekta Sanstha Matrimony</h1>
           <p className="page-description">
             Connecting community members for meaningful relationships based on shared values and traditions.
           </p>
@@ -19,12 +19,12 @@ const MatrimonyPage = () => {
             <div className="matrimony-text">
               <h2>About Our Matrimony Service</h2>
               <p>
-                The Baranwal Samaj Matrimony service is designed to help community members find compatible partners 
+                The Baranwal Ekta Sanstha Matrimony service is designed to help community members find compatible partners 
                 who share our cultural values and traditions. We understand the importance of preserving 
                 our heritage while building strong families for the future.
               </p>
               <p>
-                Our service is exclusively available to Baranwal Samaj members and their families. 
+                Our service is exclusively available to Baranwal Ekta Sanstha members and their families. 
                 We prioritize privacy, respect, and compatibility in all our matchmaking efforts.
               </p>
               <div className="matrimony-stats">
@@ -45,7 +45,7 @@ const MatrimonyPage = () => {
             <div className="matrimony-image">
               <Image
                 src="/api/placeholder/600/400"
-                alt="Baranwal Samaj Matrimony"
+                alt="Baranwal Ekta Sanstha Matrimony"
                 width={600}
                 height={400}
                 className="intro-image"
@@ -135,7 +135,7 @@ const MatrimonyPage = () => {
               </div>
               <div className="testimonial-content">
                 <p className="testimonial-text">
-                  "We met through the Baranwal Samaj Matrimony service in 2022 and immediately connected 
+                  "We met through the Baranwal Ekta Sanstha Matrimony service in 2022 and immediately connected 
                   over our shared values and interests. The community support made our journey 
                   to marriage so much smoother. We're grateful for this wonderful platform!"
                 </p>
@@ -156,7 +156,7 @@ const MatrimonyPage = () => {
               <div className="testimonial-content">
                 <p className="testimonial-text">
                   "As someone who values cultural traditions, I was looking for a partner who 
-                  shared the same priorities. The Baranwal Samaj Matrimony service understood exactly what 
+                  shared the same priorities. The Baranwal Ekta Sanstha Matrimony service understood exactly what 
                   I was looking for and helped me find my perfect match."
                 </p>
                 <p className="testimonial-author">- Anita & Vijay, Matched in 2023</p>
@@ -195,7 +195,7 @@ const MatrimonyPage = () => {
             <div className="faq-item">
               <h3 className="faq-question">Who can register for the matrimony service?</h3>
               <p className="faq-answer">
-                Our matrimony service is available to all Baranwal Samaj members and their families. 
+                Our matrimony service is available to all Baranwal Ekta Sanstha members and their families. 
                 Both individuals seeking partners and parents searching for matches for their children are welcome.
               </p>
             </div>

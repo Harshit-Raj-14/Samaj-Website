@@ -1,4 +1,4 @@
-// Google Sheets API integration for Baranwal Samaj Members
+// Google Sheets API integration for Baranwal Ekta Sanstha Members
 // Sheet: https://docs.google.com/spreadsheets/d/19ik7N-s8en58srHCQ1BO5GG_a7SKPNoCMtBB7pxx8dc/edit
 
 const GOOGLE_SHEETS_CONFIG = {

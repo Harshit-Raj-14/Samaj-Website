@@ -36,7 +36,7 @@ const HeroSection = () => {
           >
             <Image
               src={image}
-              alt={`Baranwal Samaj Community ${index + 1}`}
+              alt={`Baranwal Ekta Sanstha Community ${index + 1}`}
               fill
               sizes="100vw"
               priority={index === 0}

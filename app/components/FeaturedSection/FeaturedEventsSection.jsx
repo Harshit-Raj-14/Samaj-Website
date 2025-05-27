@@ -12,58 +12,58 @@ const FeaturedEventsSection = () => {
 
   // Featured events data
   const featuredEvents = [
-    {
-      id: 1,
-      type: 'upcoming',
-      title: 'Annual Community Festival 2025',
-      subtitle: 'Celebrating Unity & Heritage',
-      date: 'June 15-16, 2025',
-      time: '10:00 AM - 8:00 PM',
-      location: 'Baranwal Samaj Center',
-      description: 'Join us for our grandest celebration featuring cultural performances, traditional cuisine, art exhibitions, and activities for all generations.',
-      highlights: ['Cultural Performances', 'Traditional Food', 'Art Gallery', 'Kids Zone'],
-      image: '/images/festival-2025.jpg',
-      gradient: 'linear-gradient(135deg, #007bff 0%, #0056b3 100%)',
-      accentColor: '#007bff',
-      icon: '🎉',
-      status: 'Register Now',
-      attendees: '500+ Expected'
-    },
-    {
-      id: 2,
-      type: 'upcoming',
-      title: 'Youth Leadership Summit',
-      subtitle: 'Empowering Tomorrow\'s Leaders',
-      date: 'April 8, 2025',
-      time: '9:00 AM - 5:00 PM',
-      location: 'Community Learning Center',
-      description: 'An inspiring day of workshops, mentorship sessions, and networking opportunities designed to nurture young leaders in our community.',
-      highlights: ['Leadership Workshops', 'Mentorship', 'Networking', 'Career Guidance'],
-      image: '/images/youth-summit.jpg',
-      gradient: 'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)',
-      accentColor: '#ffc107',
-      icon: '🌟',
-      status: 'Early Bird',
-      attendees: '150 Spots'
-    },
-    {
-      id: 3,
-      type: 'featured',
-      title: 'Winter Cultural Showcase',
-      subtitle: 'Memories from December 2024',
-      date: 'December 20, 2024',
-      time: '6:00 PM - 11:00 PM',
-      location: 'Grand Auditorium',
-      description: 'A magical evening that brought together 300+ community members for an unforgettable celebration of our rich cultural heritage.',
-      highlights: ['Dance Performances', 'Music Concert', 'Food Festival', 'Award Ceremony'],
-      image: '/images/winter-showcase.jpg',
-      gradient: 'linear-gradient(135deg, #6c757d 0%, #495057 100%)',
-      accentColor: '#6c757d',
-      icon: '❄️',
-      status: 'View Gallery',
-      attendees: '300+ Attended'
-    }
-  ];
+  {
+    id: 1,
+    type: 'featured',
+    title: 'महाराजा अहिबरन जयंती समारोह, 2024',
+    subtitle: 'हमारे पूर्वजों को श्रद्धांजलि',
+    date: '2024',
+    time: '5:00 PM - 9:00 PM',
+    location: 'Baranwal Ekta Sanstha Mumbai',
+    description: 'सांस्कृतिक कार्यक्रमों, इतिहास प्रस्तुतियों और भव्य भोजन प्रसाद के साथ एक भव्य समारोह जिसने हमारे गौरवशाली अतीत को जीवंत किया।',
+    highlights: ['सांस्कृतिक कार्यक्रम', 'इतिहास प्रस्तुति', 'विशेष भोजन प्रसाद', 'सामूहिक सहभागिता'],
+    image: '/images/ahivarn-jayanti.png',
+    gradient: 'linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%)',
+    accentColor: '#9c27b0',
+    icon: '🕉️',
+    status: 'Completed',
+    attendees: '1000+ Attended'
+  },
+  {
+    id: 2,
+    type: 'featured',
+    title: 'होली मिलन समारोह',
+    subtitle: 'रंगों में एकता',
+    date: 'March, 2024',
+    time: '10:00 AM - 2:00 PM',
+    location: 'Baranwal Ekta Sanstha Grounds',
+    description: 'रंग, संगीत और उत्सव के साथ मनाई गई होली, जिसने पूरे समुदाय को आपसी भाईचारे में बाँध दिया।',
+    highlights: ['रंग खेल', 'डांडिया/नृत्य', 'पारंपरिक नाश्ता', 'परिवारिक गेम्स'],
+    image: '/images/holi-milan.png',
+    gradient: 'linear-gradient(135deg, #e91e63 0%, #c2185b 100%)',
+    accentColor: '#e91e63',
+    icon: '🌈',
+    status: 'Completed',
+    attendees: '1000+ Attended'
+  },
+  {
+    id: 3,
+    type: 'upcoming',
+    title: 'महापूजा एवं सामूहिक हवन',
+    subtitle: 'सद्भावना, शांति और समृद्धि के लिए',
+    date: '2025-2026',
+    time: '7:00 AM - 1:00 PM',
+    location: 'Baranwal Ekta Sanstha',
+    description: 'धार्मिक अनुष्ठानों, सामूहिक हवन और भजन-कीर्तन के साथ एक दिव्य आयोजन जो पूरे समाज को अध्यात्म से जोड़ता है।',
+    highlights: ['सामूहिक हवन', 'भजन-कीर्तन', 'प्रवचन', 'प्रसाद वितरण'],
+    image: '/images/maha-puja.png',
+    gradient: 'linear-gradient(135deg, #4caf50 0%, #2e7d32 100%)',
+    accentColor: '#4caf50',
+    icon: '🙏',
+    status: 'Upcoming',
+    attendees: 'Open for All'
+  }
+];
 
   // Intersection Observer
   useEffect(() => {
@@ -137,13 +137,9 @@ const FeaturedEventsSection = () => {
         {/* Section Header */}
         <div className="section-header">
           <h2 className="section-title">Featured Events</h2>
-          <div className="header-decoration">
-            <span className="decoration-line"></span>
-            <span className="decoration-icon">✨</span>
-            <span className="decoration-line"></span>
-          </div>
+          <br></br>
           <p className="section-subtitle">
-            Discover extraordinary moments that bring our community together
+            Extraordinary moments that bring our community together
           </p>
         </div>
 
@@ -195,7 +191,7 @@ const FeaturedEventsSection = () => {
 
               <div className="event-actions">
                 <Link 
-                  href={`/events/${currentEvent.id}`} 
+                  href={`/gallery`} 
                   className="btn btn-primary"
                   style={{ backgroundColor: currentEvent.accentColor }}
                 >
@@ -211,14 +207,29 @@ const FeaturedEventsSection = () => {
 
             <div className="hero-visual">
               <div className="image-container">
-                <div 
-                  className="event-image"
-                  style={{ 
-                    background: `${currentEvent.gradient}, url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="white" opacity="0.1"/><text x="50" y="60" text-anchor="middle" font-size="30" fill="white">${currentEvent.icon}</text></svg>')` 
-                  }}
-                >
-                  <div className="image-overlay">
-                    <div className="play-button">
+                <div className="event-image-wrapper">
+                  <Image
+                    src={currentEvent.image}
+                    alt={currentEvent.title}
+                    width={600}
+                    height={400}
+                    className="event-image"
+                    priority={activeCard === 0}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyejFhiuImuLFAmpJTyesMzAoJIuNksJCgsK1GgqRfEcCksZJIkCLzQv6fP/9k="
+                    onError={(e) => {
+                      console.error('Image failed to load:', currentEvent.image);
+                      e.target.style.display = 'none';
+                      // Show fallback gradient background
+                      e.target.parentElement.style.background = currentEvent.gradient;
+                    }}
+                  />
+                  <div 
+                    className="image-overlay" 
+                    onClick={() => window.open('https://www.youtube.com/watch?v=MyjlZAl6X_s', '_blank')}
+                    style={{ cursor: 'pointer' }}
+                  >
+                  <div className="play-button">
                       <i className="play-icon">▶</i>
                     </div>
                     <p>View Event Gallery</p>
@@ -226,7 +237,7 @@ const FeaturedEventsSection = () => {
                 </div>
                 
                 {/* Floating stats */}
-                <div className="floating-stats">
+                {/* <div className="floating-stats">
                   <div className="stat-card">
                     <span className="stat-number">
                       {currentEvent.type === 'upcoming' ? '🎟️' : '📸'}
@@ -235,7 +246,7 @@ const FeaturedEventsSection = () => {
                       {currentEvent.type === 'upcoming' ? 'Register' : 'Gallery'}
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -278,11 +289,11 @@ const FeaturedEventsSection = () => {
             <h4>Don't Miss Out on Amazing Events!</h4>
             <p>Stay updated with our latest events and be part of something extraordinary.</p>
             <div className="cta-actions">
-              <Link href="/events/subscribe" className="btn btn-gradient">
+              <Link href="/events" className="btn btn-gradient">
                 <span>Subscribe to Updates</span>
                 <i className="btn-icon">🔔</i>
               </Link>
-              <Link href="/events/calendar" className="btn btn-outline">
+              <Link href="/events" className="btn btn-outline">
                 <span>View Full Calendar</span>
                 <i className="btn-icon">📅</i>
               </Link>

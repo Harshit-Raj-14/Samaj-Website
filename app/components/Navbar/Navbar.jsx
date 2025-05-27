@@ -47,12 +47,12 @@ const Navbar = () => {
             <div className="logo-container">
               <Image 
                 src="/logo.png" 
-                alt="Baranwal Samaj Logo" 
+                alt="Baranwal Ekta Sanstha Logo" 
                 width={40} 
                 height={40} 
                 className="logo"
               />
-              <span className="logo-text">Baranwal Samaj</span>
+              <span className="logo-text">Baranwal Ekta Sanstha</span>
             </div>
           </Link>
         </div>

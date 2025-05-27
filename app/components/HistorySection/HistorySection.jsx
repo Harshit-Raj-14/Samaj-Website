@@ -12,7 +12,7 @@ const HistorySection = () => {
           <div className="history-image-container">
             <Image 
               src="/api/placeholder/600/400" 
-              alt="Baranwal Samaj History" 
+              alt="Baranwal Ekta Sanstha History" 
               width={600} 
               height={400} 
               className="history-image"
@@ -22,7 +22,7 @@ const HistorySection = () => {
           <div className="history-text">
             <h3>Founded in 1950</h3>
             <p>
-              The Baranwal Samaj was established in 1950 by a group of visionary 
+              The Baranwal Ekta Sanstha was established in 1950 by a group of visionary 
               leaders who recognized the importance of preserving our cultural heritage 
               while adapting to a changing world.
             </p>
@@ -35,7 +35,7 @@ const HistorySection = () => {
             </p>
             
             <p>
-              Today, the Baranwal Samaj continues to build on this rich legacy, 
+              Today, the Baranwal Ekta Sanstha continues to build on this rich legacy, 
               creating programs and initiatives that serve the evolving needs of our 
               members while honoring our traditions and history.
             </p>

@@ -55,7 +55,7 @@ const Footer = () => {
                     <span className="logo-symbol">🏛️</span>
                   </div>
                   <div className="logo-text">
-                    <h3>Baranwal Samaj</h3>
+                    <h3>Baranwal Ekta Sanstha</h3>
                   </div>
                 </div>
                 
@@ -159,7 +159,7 @@ const Footer = () => {
                     <div className="contact-icon">📍</div>
                     <div className="contact-text">
                       <h5>Main Office</h5>
-                      <p>123 Community Center<br />Baranwal Nagar, City<br />State - 123456</p>
+                      <p>CHL, 13 Prem Nagar Sudhar Sangh<br />Linking Road, Opp. Teen Dongri<br />Goregaon(West), Mumbai-400090</p>
                     </div>
                   </div>
 
@@ -167,7 +167,7 @@ const Footer = () => {
                     <div className="contact-icon">📞</div>
                     <div className="contact-text">
                       <h5>Phone Numbers</h5>
-                      <p>+91 98765 43210<br />+91 87654 32109</p>
+                      <p>+91 7870868601<br />+91 9029995569</p>
                     </div>
                   </div>
 
@@ -175,7 +175,7 @@ const Footer = () => {
                     <div className="contact-icon">✉️</div>
                     <div className="contact-text">
                       <h5>Email Address</h5>
-                      <p>info@baranwalsamaj.org<br />contact@baranwalsamaj.org</p>
+                      <p>baranwalektasanstha@gmail.com</p>
                     </div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const Footer = () => {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <div className="footer-legal">
-                <p>&copy; {currentYear} Baranwal Samaj. All rights reserved.</p>
+                <p>&copy; {currentYear} Baranwal Ekta Sanstha. All rights reserved.</p>
                 <div className="legal-links">
                   <Link href="/privacy">Privacy Policy</Link>
                   <span className="separator">•</span>

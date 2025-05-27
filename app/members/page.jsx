@@ -239,14 +239,14 @@ const MembersPage = () => {
           <div className="header-text">
             <h1 className="page-title">Our Members Directory</h1>
             <p className="page-description">
-              Connect with fellow members of the Baranwal Samaj community. Together we preserve our heritage and build a stronger future.
+              Connect with fellow members of the Baranwal Ekta Sanstha community. Together we preserve our heritage and build a stronger future.
             </p>
             <div className="header-actions">
-              <Link href="/join" className="btn btn-primary">
+              <Link href="https://forms.gle/mCq9oUr9CMyUxf7r9" className="btn btn-primary">
                 <span>Join Our Community</span>
                 <i className="btn-icon">🤝</i>
               </Link>
-              <Link href="/contact" className="btn btn-secondary">
+              <Link href="mailto:baranwalektasanstha@gmail.com" className="btn btn-secondary">
                 <span>Contact Us</span>
                 <i className="btn-icon">📞</i>
               </Link>
@@ -443,7 +443,7 @@ const MembersPage = () => {
             <div className="data-source">
               <span className="sheets-icon">📊</span>
               <span>
-                {syncStatus.status === 'connected' ? 'Live data from Google Sheets' : 'Sample data (setup Google Sheets for live data)'}
+                {syncStatus.status === 'connected' ? 'Live data' : 'Sample data (setup Google Sheets for live data)'}
               </span>
             </div>
           </div>
@@ -455,6 +455,7 @@ const MembersPage = () => {
         <div className="container">
           <div className="objectives-header">
             <h2 className="section-title">Object of Society</h2>
+            <br></br>
             <p className="section-subtitle">
               Our mission and objectives that guide our community activities and initiatives
             </p>
@@ -470,15 +471,6 @@ const MembersPage = () => {
               </div>
             ))}
           </div>
-          
-          <div className="objectives-footer">
-            <div className="signature-section">
-              <div className="signature-line">
-                <span className="signature-title">(PRESIDENT)</span>
-                <div className="signature-name">Baranwal Samaj</div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -491,11 +483,11 @@ const MembersPage = () => {
               Become part of our growing family and contribute to preserving our rich cultural heritage while building meaningful connections.
             </p>
             <div className="cta-actions">
-              <Link href="/join" className="btn btn-primary large">
-                <span>Apply for Membership</span>
+              <Link href="https://forms.gle/mCq9oUr9CMyUxf7r9" className="btn btn-primary large">
+                <span>Become A Member</span>
                 <i className="btn-icon">📋</i>
               </Link>
-              <Link href="/contact" className="btn btn-outline large">
+              <Link href="mailto:baranwalektasanstha@gmail.com" className="btn btn-outline large">
                 <span>Get More Information</span>
                 <i className="btn-icon">💬</i>
               </Link>

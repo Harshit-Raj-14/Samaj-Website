@@ -11,7 +11,7 @@ const EventsPage = () => {
       title: 'Annual Community Festival',
       date: 'June 15-16, 2025',
       time: '10:00 AM - 8:00 PM',
-      location: 'Baranwal Samaj Center',
+      location: 'Baranwal Ekta Sanstha Center',
       image: '/api/placeholder/600/400',
       description: 'Our biggest celebration of the year featuring cultural performances, traditional food, games, and activities for all ages.',
       registrationLink: '#',
@@ -21,7 +21,7 @@ const EventsPage = () => {
       title: 'Youth Leadership Workshop',
       date: 'May 25, 2025',
       time: '1:00 PM - 5:00 PM',
-      location: 'Baranwal Samaj Center',
+      location: 'Baranwal Ekta Sanstha Center',
       image: '/api/placeholder/600/400',
       description: 'A hands-on workshop designed to help young community members develop leadership skills and connect with mentors.',
       registrationLink: '#',
@@ -31,7 +31,7 @@ const EventsPage = () => {
       title: 'Cultural Cooking Class',
       date: 'June 8, 2025',
       time: '2:00 PM - 4:00 PM',
-      location: 'Baranwal Samaj Kitchen',
+      location: 'Baranwal Ekta Sanstha Kitchen',
       image: '/api/placeholder/600/400',
       description: 'Learn to prepare traditional dishes from expert community cooks. All ingredients and equipment will be provided.',
       registrationLink: '#',
@@ -123,39 +123,6 @@ const EventsPage = () => {
         </div>
       </section>
       
-      <section className="section calendar-section">
-        <div className="container">
-          <h2 className="section-title">Event Calendar</h2>
-          <p className="calendar-intro">
-            Plan ahead and mark your calendar for these important community dates.
-            For the most up-to-date information, please check back regularly or subscribe to our newsletter.
-          </p>
-          
-          <div className="calendar-embed">
-            <Image
-              src="/api/placeholder/1000/600"
-              alt="Event Calendar"
-              width={1000}
-              height={600}
-              style={{ width: '100%', height: 'auto', borderRadius: 'var(--border-radius)' }}
-            />
-            <p className="calendar-note">
-              *This is a placeholder for an embedded calendar. In the actual implementation, 
-              you would embed a Google Calendar or other calendar service here.
-            </p>
-          </div>
-          
-          <div className="calendar-actions">
-            <a href="#" className="btn">
-              Subscribe to Calendar
-            </a>
-            <a href="#" className="btn btn-secondary">
-              Download Calendar (PDF)
-            </a>
-          </div>
-        </div>
-      </section>
-      
       <section className="section past-events-section">
         <div className="container">
           <h2 className="section-title">Past Events</h2>
@@ -182,12 +149,6 @@ const EventsPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-          
-          <div className="past-events-archive">
-            <a href="#" className="btn">
-              View All Past Events
-            </a>
           </div>
         </div>
       </section>
