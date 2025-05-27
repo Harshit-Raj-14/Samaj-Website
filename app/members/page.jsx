@@ -274,6 +274,7 @@ const MembersPage = () => {
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">Members Directory</h2>
+            <br></br>
             <p className="section-subtitle">
               Search and connect with our community members across different locations and professions
             </p>

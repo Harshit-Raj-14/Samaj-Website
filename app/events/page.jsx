@@ -6,69 +6,37 @@ import './EventsPage.css';
 const EventsPage = () => {
   // Example data for upcoming events
   const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Annual Community Festival',
-      date: 'June 15-16, 2025',
-      time: '10:00 AM - 8:00 PM',
-      location: 'Baranwal Ekta Sanstha Center',
-      image: '/api/placeholder/600/400',
-      description: 'Our biggest celebration of the year featuring cultural performances, traditional food, games, and activities for all ages.',
-      registrationLink: '#',
-    },
-    {
-      id: 2,
-      title: 'Youth Leadership Workshop',
-      date: 'May 25, 2025',
-      time: '1:00 PM - 5:00 PM',
-      location: 'Baranwal Ekta Sanstha Center',
-      image: '/api/placeholder/600/400',
-      description: 'A hands-on workshop designed to help young community members develop leadership skills and connect with mentors.',
-      registrationLink: '#',
-    },
-    {
-      id: 3,
-      title: 'Cultural Cooking Class',
-      date: 'June 8, 2025',
-      time: '2:00 PM - 4:00 PM',
-      location: 'Baranwal Ekta Sanstha Kitchen',
-      image: '/api/placeholder/600/400',
-      description: 'Learn to prepare traditional dishes from expert community cooks. All ingredients and equipment will be provided.',
-      registrationLink: '#',
-    },
-  ];
+  {
+    id: 3,
+    title: 'महापूजा एवं सामूहिक हवन',
+    date: '2025-2026',
+    time: '7:00 AM - 1:00 PM',
+    location: 'Baranwal Ekta Sanstha',
+    image: '/images/maha-puja.png',
+    description: 'धार्मिक अनुष्ठानों, सामूहिक हवन और भजन-कीर्तन के साथ एक दिव्य आयोजन जो पूरे समाज को अध्यात्म से जोड़ता है।',
+    registrationLink: '#',
+  },
+];
+
 
   // Example data for past events
   const pastEvents = [
-    {
-      id: 1,
-      title: 'Spring Charity Drive',
-      date: 'April 10, 2025',
-      image: '/api/placeholder/600/400',
-      description: 'Community members collected donations for local families in need.',
-    },
-    {
-      id: 2,
-      title: 'Seniors Appreciation Day',
-      date: 'March 21, 2025',
-      image: '/api/placeholder/600/400',
-      description: 'A special event to honor and celebrate our elderly community members.',
-    },
-    {
-      id: 3,
-      title: 'Cultural Heritage Workshop',
-      date: 'February 15, 2025',
-      image: '/api/placeholder/600/400',
-      description: 'Interactive sessions on preserving and documenting family histories and traditions.',
-    },
-    {
-      id: 4,
-      title: 'Winter Gala',
-      date: 'January 20, 2025',
-      image: '/api/placeholder/600/400',
-      description: 'Annual formal gathering with dinner, dancing, and community awards.',
-    },
-  ];
+  {
+    id: 1,
+    title: 'महाराजा अहिबरन जयंती समारोह, 2024',
+    date: '2024',
+    image: '/images/ahivarn-jayanti.png',
+    description: 'सांस्कृतिक कार्यक्रमों, इतिहास प्रस्तुतियों और भव्य भोजन प्रसाद के साथ एक भव्य समारोह जिसने हमारे गौरवशाली अतीत को जीवंत किया।',
+  },
+  {
+    id: 2,
+    title: 'होली मिलन समारोह',
+    date: 'March, 2024',
+    image: '/images/holi-milan.png',
+    description: 'रंग, संगीत और उत्सव के साथ मनाई गई होली, जिसने पूरे समुदाय को आपसी भाईचारे में बाँध दिया।',
+  },
+];
+
 
   return (
     <div className="events-page">
@@ -143,7 +111,7 @@ const EventsPage = () => {
                   <h3 className="past-event-title">{event.title}</h3>
                   <p className="past-event-date">{event.date}</p>
                   <p className="past-event-description">{event.description}</p>
-                  <a href="#" className="past-event-link">
+                  <a href="/gallery" className="past-event-link">
                     View Photos
                   </a>
                 </div>

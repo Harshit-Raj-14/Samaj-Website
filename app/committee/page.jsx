@@ -90,7 +90,7 @@ const CommitteePage = () => {
     },
     {
       id: 7,
-      name: 'Vishalkumar Binokumar Baranwal',
+      name: 'Vishal Kumar',
       position: 'Member',
       age: 62,
       occupation: 'Business',
@@ -155,7 +155,7 @@ const CommitteePage = () => {
     },
     {
       id: 12,
-      name: 'Deepkumar Shatrudhan Hiralal Baranwal Gupta',
+      name: 'Deepak Kumar',
       position: 'Member',
       age: 74,
       occupation: 'Business',
@@ -189,6 +189,19 @@ const CommitteePage = () => {
       address: 'Room No.6, Rati Vihar Bld, Aarey Road, Near Asarambapu Ashram Pagru Baug, Goregaon (East), Mumbai - 400063',
       mobile: '9819530553',
       email: 'member8@baranwalsamaj.org',
+      image: '/api/placeholder/300/300',
+      bio: 'Involved in cultural activities and heritage preservation initiatives.'
+    },
+    {
+      id: 15,
+      name: 'Shatrudhan Harilal Baranwal Gupta',
+      position: 'Member',
+      age: 50,
+      occupation: 'Business',
+      nationality: 'Indian',
+      address: '01 GRD, Floor, Omkar Chawi, Charni Pada Road, Near Bosco School, Mumbai, Thane- 400612',
+      mobile: '',
+      email: 'member9@baranwalsamaj.org',
       image: '/api/placeholder/300/300',
       bio: 'Involved in cultural activities and heritage preservation initiatives.'
     }
