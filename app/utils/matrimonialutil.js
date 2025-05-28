@@ -82,10 +82,12 @@ const convertGoogleDriveUrl = (url, type = 'view') => {
     }
 
     if (fileId) {
-      // For images, use the direct image URL that works better
-      return type === 'download'
-        ? `https://drive.google.com/uc?export=download&id=${fileId}`
-        : `https://drive.google.com/uc?export=view&id=${fileId}`;
+      // For images, use the thumbnail URL which works more reliably
+      if (type === 'view') {
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w400-h400`;
+      } else {
+        return `https://drive.google.com/uc?export=download&id=${fileId}`;
+      }
     }
 
     return url;

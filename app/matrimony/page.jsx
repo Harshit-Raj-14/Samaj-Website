@@ -104,9 +104,21 @@ const MatrimonyPage = () => {
           <h1 className="main-title">
             Baranwal Matrimony
           </h1>
+          {/* <br></br> */}
           <p className="subtitle">Find your perfect life partner</p>
         </div>
       </header>
+
+      <div className="add-profile-section">
+        <a 
+          href="https://forms.gle/ChJkQz6x9cWFRWu39" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="add-profile-btn"
+        >
+          Add Your Matrimonial Profile
+        </a>
+      </div>
 
       {/* Filters Section */}
       <section className="filters-section">
@@ -204,13 +216,19 @@ const MatrimonyPage = () => {
                         <img
                           src={profile.photograph}
                           alt={profile.name}
+                          onLoad={(e) => {
+                            e.target.style.display = 'block';
+                            e.target.nextSibling.style.display = 'none';
+                          }}
                           onError={(e) => {
                             e.target.style.display = 'none';
                             e.target.nextSibling.style.display = 'flex';
+                            console.log('Image failed to load:', profile.photograph);
                           }}
+                          style={{display: 'none'}}
                         />
                       ) : null}
-                      <div className="placeholder-image-circular" style={{display: profile.photograph ? 'none' : 'flex'}}>
+                      <div className="placeholder-image-circular" style={{display: 'flex'}}>
                         <span className="placeholder-icon">👤</span>
                       </div>
                       <div className="online-indicator"></div>
@@ -281,7 +299,7 @@ const MatrimonyPage = () => {
                     {profile.socialMedia && (
                       <div className="info-row">
                         <div className="info-item-full">
-                          <span className="info-icon">🔗</span>
+                          <span className="info-icon">🌐</span>
                           <div className="info-text">
                             <span className="info-label">Social Media</span>
                             <a 
@@ -335,13 +353,19 @@ const MatrimonyPage = () => {
                   <img
                     src={selectedProfile.photograph}
                     alt={selectedProfile.name}
+                    onLoad={(e) => {
+                      e.target.style.display = 'block';
+                      e.target.nextSibling.style.display = 'none';
+                    }}
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
+                      console.log('Modal image failed to load:', selectedProfile.photograph);
                     }}
+                    style={{display: 'none'}}
                   />
                 ) : null}
-                <div className="placeholder-image large" style={{display: selectedProfile.photograph ? 'none' : 'flex'}}>
+                <div className="placeholder-image large" style={{display: 'flex'}}>
                   <span className="placeholder-icon">👤</span>
                 </div>
               </div>
@@ -416,13 +440,40 @@ const MatrimonyPage = () => {
                 <div className="detail-section">
                   <h3>Social Media</h3>
                   <div className="detail-row">
-                    <a 
-                      href={formatSocialMediaUrl(selectedProfile.socialMedia)} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={formatSocialMediaUrl(selectedProfile.socialMedia)}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="social-link"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '2.5rem',
+                        width: '2.5rem',
+                        fontSize: '1.5rem',
+                        color: '#0073e6',
+                        textDecoration: 'none',
+                        borderRadius: '50%',       // full circle
+                        border: '1px solid #0073e6',
+                        backgroundColor: '#ffffff',// solid white background
+                        padding: 0,
+                        margin: 0,
+                        lineHeight: 1,
+                        userSelect: 'none',
+                        transition: 'background-color 0.3s, color 0.3s',
+                        cursor: 'pointer',
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.backgroundColor = '#0073e6';
+                        e.currentTarget.style.color = '#ffffff';
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.backgroundColor = '#ffffff';
+                        e.currentTarget.style.color = '#0073e6';
+                      }}
                     >
-                      🔗 View Social Profile
+                      🔗
                     </a>
                   </div>
                 </div>
