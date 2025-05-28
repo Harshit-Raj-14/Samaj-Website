@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Facebook, Twitter, Instagram, Youtube, MessageCircle, Bell } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -51,8 +52,18 @@ const Footer = () => {
               {/* Organization Info */}
               <div className="footer-section organization-info">
                 <div className="footer-logo">
-                  <div className="logo-icon">
-                    <span className="logo-symbol">🏛️</span>
+                  <div>
+                    <Image 
+                      src="/logo.png" 
+                      alt="Baranwal Ekta Sanstha Logo" 
+                      width={48} 
+                      height={48}
+                      className="logo-image"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <div className="logo-text">
                     <h3>Baranwal Ekta Sanstha</h3>
@@ -69,22 +80,19 @@ const Footer = () => {
                   <h4>Connect With Us</h4>
                   <div className="social-icons">
                     <Link href="https://facebook.com" className="social-link facebook">
-                      <i className="social-icon">📘</i>
+                      <Facebook className="social-icon" size={20} />
                     </Link>
                     <Link href="https://twitter.com" className="social-link twitter">
-                      <i className="social-icon">🐦</i>
+                      <Twitter className="social-icon" size={20} />
                     </Link>
                     <Link href="https://instagram.com" className="social-link instagram">
-                      <i className="social-icon">📷</i>
+                      <Instagram className="social-icon" size={20} />
                     </Link>
                     <Link href="https://youtube.com" className="social-link youtube">
-                      <i className="social-icon">📺</i>
-                    </Link>
-                    <Link href="https://linkedin.com" className="social-link linkedin">
-                      <i className="social-icon">💼</i>
+                      <Youtube className="social-icon" size={20} />
                     </Link>
                     <Link href="https://whatsapp.com" className="social-link whatsapp">
-                      <i className="social-icon">💬</i>
+                      <MessageCircle className="social-icon" size={20} />
                     </Link>
                   </div>
                 </div>
@@ -106,7 +114,7 @@ const Footer = () => {
                       />
                       <button type="submit" className="newsletter-button">
                         <span>Subscribe</span>
-                        <i className="button-icon">🔔</i>
+                        <Bell className="button-icon" size={16} />
                       </button>
                     </div>
                     <label className="newsletter-checkbox">
@@ -207,13 +215,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      {/* Floating Elements */}
-      {/* <div className="footer-floating-elements">
-        <div className="floating-shape shape-1"></div>
-        <div className="floating-shape shape-2"></div>
-        <div className="floating-shape shape-3"></div>
-      </div> */}
       <hr></hr>
     </footer>
   );

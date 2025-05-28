@@ -231,7 +231,6 @@ const MatrimonyPage = () => {
                       <div className="placeholder-image-circular" style={{display: 'flex'}}>
                         <span className="placeholder-icon">👤</span>
                       </div>
-                      <div className="online-indicator"></div>
                     </div>
                     
                     <div className="profile-basic-info">
@@ -271,7 +270,7 @@ const MatrimonyPage = () => {
                         <span className="info-icon">📞</span>
                         <div className="info-text">
                           <span className="info-label">Phone</span>
-                          <span className="info-value">{profile.phoneNo ? profile.phoneNo.substring(0, 10) + '...' : 'Not provided'}</span>
+                          <span className="info-value">{profile.phoneNo ? profile.phoneNo.substring(0, 10) : 'Not provided'}</span>
                         </div>
                       </div>
                     </div>
