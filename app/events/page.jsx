@@ -32,7 +32,7 @@ const EventsPage = () => {
     id: 2,
     title: 'होली मिलन समारोह',
     date: 'March, 2024',
-    image: '/images/holi-milan.png',
+    image: '/images/holi1.jpeg',
     description: 'रंग, संगीत और उत्सव के साथ मनाई गई होली, जिसने पूरे समुदाय को आपसी भाईचारे में बाँध दिया।',
   },
 ];
@@ -129,7 +129,7 @@ const EventsPage = () => {
               Have an idea for a community event or activity? We welcome your suggestions! 
               Please fill out the form below to share your ideas with the Events Committee.
             </p>
-            <a href="#" className="btn">
+            <a href="mailto:baranwalektasanstha@gmail.com" className="btn">
               Submit Event Idea
             </a>
           </div>

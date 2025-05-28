@@ -1,231 +1,468 @@
-import React from 'react';
-import Image from 'next/image';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import './MatrimonyPage.css';
+import { 
+  fetchMatrimonialData,
+  filterByGender,
+  filterByAgeRange,
+  searchByName,
+  getUniqueGenders
+} from '../utils/matrimonialutil';
 
 const MatrimonyPage = () => {
-  return (
-    <div className="matrimony-page">
-      <div className="page-header matrimony-header">
-        <div className="container">
-          <h1 className="page-title">Baranwal Ekta Sanstha Matrimony</h1>
-          <p className="page-description">
-            Connecting community members for meaningful relationships based on shared values and traditions.
-          </p>
+  const [profiles, setProfiles] = useState([]);
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  
+  // Filter states
+  const [searchTerm, setSearchTerm] = useState('');
+  const [genderFilter, setGenderFilter] = useState('all');
+  const [minAge, setMinAge] = useState('');
+  const [maxAge, setMaxAge] = useState('');
+  
+  // Filter options
+  const [genderOptions, setGenderOptions] = useState([]);
+
+  // Fetch data on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchMatrimonialData();
+        setProfiles(data);
+        setFilteredProfiles(data);
+        
+        // Set filter options
+        setGenderOptions(getUniqueGenders(data));
+      } catch (error) {
+        console.error('Error loading matrimonial data:', error);
+      }
+      setLoading(false);
+    };
+
+    loadData();
+  }, []); // Empty dependency array to prevent infinite re-renders
+
+  // Apply filters
+  useEffect(() => {
+    let filtered = profiles;
+
+    // Apply search filter
+    filtered = searchByName(filtered, searchTerm);
+    
+    // Apply gender filter
+    filtered = filterByGender(filtered, genderFilter);
+    
+    // Apply age range filter
+    filtered = filterByAgeRange(filtered, parseInt(minAge) || null, parseInt(maxAge) || null);
+
+    setFilteredProfiles(filtered);
+  }, [profiles, searchTerm, genderFilter, minAge, maxAge]);
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setGenderFilter('all');
+    setMinAge('');
+    setMaxAge('');
+  };
+
+  const openProfileModal = (profile) => {
+    setSelectedProfile(profile);
+  };
+
+  const closeProfileModal = () => {
+    setSelectedProfile(null);
+  };
+
+  // Helper function to format social media URL
+  const formatSocialMediaUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return `https://${url}`;
+  };
+
+  if (loading) {
+    return (
+      <div className="matrimony-container">
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>Loading matrimonial profiles...</p>
         </div>
       </div>
-      
-      <section className="section matrimony-intro">
-        <div className="container">
-          <div className="grid-2">
-            <div className="matrimony-text">
-              <h2>About Our Matrimony Service</h2>
-              <p>
-                The Baranwal Ekta Sanstha Matrimony service is designed to help community members find compatible partners 
-                who share our cultural values and traditions. We understand the importance of preserving 
-                our heritage while building strong families for the future.
-              </p>
-              <p>
-                Our service is exclusively available to Baranwal Ekta Sanstha members and their families. 
-                We prioritize privacy, respect, and compatibility in all our matchmaking efforts.
-              </p>
-              <div className="matrimony-stats">
-                <div className="stat-item">
-                  <span className="stat-number">200+</span>
-                  <span className="stat-label">Active Profiles</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">50+</span>
-                  <span className="stat-label">Successful Matches</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">15+</span>
-                  <span className="stat-label">Years of Service</span>
-                </div>
-              </div>
-            </div>
-            <div className="matrimony-image">
-              <Image
-                src="/api/placeholder/600/400"
-                alt="Baranwal Ekta Sanstha Matrimony"
-                width={600}
-                height={400}
-                className="intro-image"
+    );
+  }
+
+  return (
+    <div className="matrimony-container">
+      {/* Header Section */}
+      <header className="matrimony-header">
+        <div className="header-content">
+          <h1 className="main-title">
+            Baranwal Matrimony
+          </h1>
+          <p className="subtitle">Find your perfect life partner</p>
+        </div>
+      </header>
+
+      {/* Filters Section */}
+      <section className="filters-section">
+        <div className="filters-container">
+          <h2 className="filters-title">Find Your Match</h2>
+          
+          <div className="filters-grid">
+            {/* Search Bar */}
+            <div className="filter-group">
+              <label htmlFor="search">Search by Name</label>
+              <input
+                type="text"
+                id="search"
+                placeholder="Enter name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="filter-input"
               />
             </div>
-          </div>
-        </div>
-      </section>
-      
-      <section className="section how-it-works">
-        <div className="container">
-          <h2 className="section-title">How It Works</h2>
-          
-          <div className="process-steps">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <div className="step-content">
-                <h3>Register</h3>
-                <p>
-                  Complete our detailed profile registration form with information about yourself, 
-                  your background, interests, and what you're looking for in a partner.
-                </p>
-              </div>
+
+            {/* Gender Filter */}
+            <div className="filter-group">
+              <label htmlFor="gender">Gender</label>
+              <select
+                id="gender"
+                value={genderFilter}
+                onChange={(e) => setGenderFilter(e.target.value)}
+                className="filter-select"
+              >
+                <option value="all">All Genders</option>
+                {genderOptions.map(gender => (
+                  <option key={gender} value={gender}>{gender}</option>
+                ))}
+              </select>
             </div>
-            
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <div className="step-content">
-                <h3>Verification</h3>
-                <p>
-                  Our team verifies your community membership and the information provided 
-                  to ensure a safe and trustworthy environment for all participants.
-                </p>
-              </div>
-            </div>
-            
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <div className="step-content">
-                <h3>Browse Profiles</h3>
-                <p>
-                  Once approved, you can browse through profiles of other members who match 
-                  your preferences and compatibility factors.
-                </p>
-              </div>
-            </div>
-            
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <div className="step-content">
-                <h3>Express Interest</h3>
-                <p>
-                  When you find profiles that interest you, you can express interest through 
-                  our system, which will notify the other party discreetly.
-                </p>
-              </div>
-            </div>
-            
-            <div className="process-step">
-              <div className="step-number">5</div>
-              <div className="step-content">
-                <h3>Connect</h3>
-                <p>
-                  If there's mutual interest, our team will facilitate an introduction and 
-                  provide a secure way for both parties to communicate.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section className="section testimonials-section">
-        <div className="container">
-          <h2 className="section-title">Success Stories</h2>
-          
-          <div className="testimonials-slider">
-            <div className="testimonial-card">
-              <div className="testimonial-image">
-                <Image
-                  src="/api/placeholder/400/400"
-                  alt="Happy Couple"
-                  width={100}
-                  height={100}
-                  className="testimonial-couple"
+
+            {/* Age Range */}
+            <div className="filter-group age-group">
+              <label>Age Range</label>
+              <div className="age-inputs">
+                <input
+                  type="number"
+                  placeholder="Min"
+                  value={minAge}
+                  onChange={(e) => setMinAge(e.target.value)}
+                  className="filter-input age-input"
+                  min="18"
+                  max="80"
+                />
+                <span className="age-separator">to</span>
+                <input
+                  type="number"
+                  placeholder="Max"
+                  value={maxAge}
+                  onChange={(e) => setMaxAge(e.target.value)}
+                  className="filter-input age-input"
+                  min="18"
+                  max="80"
                 />
               </div>
-              <div className="testimonial-content">
-                <p className="testimonial-text">
-                  "We met through the Baranwal Ekta Sanstha Matrimony service in 2022 and immediately connected 
-                  over our shared values and interests. The community support made our journey 
-                  to marriage so much smoother. We're grateful for this wonderful platform!"
-                </p>
-                <p className="testimonial-author">- Rahul & Priya, Matched in 2022</p>
-              </div>
             </div>
-            
-            <div className="testimonial-card">
-              <div className="testimonial-image">
-                <Image
-                  src="/api/placeholder/400/400"
-                  alt="Happy Couple"
-                  width={100}
-                  height={100}
-                  className="testimonial-couple"
-                />
-              </div>
-              <div className="testimonial-content">
-                <p className="testimonial-text">
-                  "As someone who values cultural traditions, I was looking for a partner who 
-                  shared the same priorities. The Baranwal Ekta Sanstha Matrimony service understood exactly what 
-                  I was looking for and helped me find my perfect match."
-                </p>
-                <p className="testimonial-author">- Anita & Vijay, Matched in 2023</p>
-              </div>
+          </div>
+
+          <div className="filter-actions">
+            <button onClick={resetFilters} className="reset-btn">
+              Reset Filters
+            </button>
+            <div className="results-count">
+              {filteredProfiles.length} profiles found
             </div>
           </div>
         </div>
       </section>
-      
-      <section className="section registration-section">
-        <div className="container">
-          <div className="registration-box">
-            <h2>Ready to Begin Your Journey?</h2>
-            <p>
-              Join our matrimony service to connect with potential partners who share your values, 
-              culture, and vision for the future. Our team is dedicated to helping you find a 
-              meaningful and lasting relationship.
-            </p>
-            <div className="registration-buttons">
-              <a href="#" className="btn">
-                Register Now
-              </a>
-              <a href="#" className="btn btn-secondary">
-                Learn More
-              </a>
+
+      {/* Profiles Grid */}
+      <section className="profiles-section">
+        <div className="profiles-container">
+          {filteredProfiles.length === 0 ? (
+            <div className="no-results">
+              <div className="no-results-icon">🔍</div>
+              <h3>No profiles found</h3>
+              <p>Try adjusting your search criteria</p>
+            </div>
+          ) : (
+            <div className="profiles-grid">
+              {filteredProfiles.map((profile) => (
+                <div
+                  key={profile.id}
+                  className="profile-card"
+                  onClick={() => openProfileModal(profile)}
+                >
+                  <div className="profile-card-header">
+                    <div className="profile-image-circular">
+                      {profile.photograph ? (
+                        <img
+                          src={profile.photograph}
+                          alt={profile.name}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'flex';
+                          }}
+                        />
+                      ) : null}
+                      <div className="placeholder-image-circular" style={{display: profile.photograph ? 'none' : 'flex'}}>
+                        <span className="placeholder-icon">👤</span>
+                      </div>
+                      <div className="online-indicator"></div>
+                    </div>
+                    
+                    <div className="profile-basic-info">
+                      <h3 className="profile-name">{profile.name}</h3>
+                      <div className="profile-subtitle">
+                        <span className="age-gender">{profile.age} years • {profile.gender}</span>
+                      </div>
+                      <div className="profile-location">
+                        <span className="location-icon">📍</span>
+                        <span className="location-text">
+                          {profile.currentAddress ? profile.currentAddress.split(',')[0] : 'Location not specified'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="profile-info-expanded">
+                    <div className="info-row">
+                      <div className="info-item-full">
+                        <span className="info-icon">👨‍👩‍👧‍👦</span>
+                        <div className="info-text">
+                          <span className="info-label">Father's Name</span>
+                          <span className="info-value">{profile.fatherName}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="info-row">
+                      <div className="info-item-half">
+                        <span className="info-icon">📏</span>
+                        <div className="info-text">
+                          <span className="info-label">Height</span>
+                          <span className="info-value">{profile.heightInFeet}</span>
+                        </div>
+                      </div>
+                      <div className="info-item-half">
+                        <span className="info-icon">📞</span>
+                        <div className="info-text">
+                          <span className="info-label">Phone</span>
+                          <span className="info-value">{profile.phoneNo ? profile.phoneNo.substring(0, 10) + '...' : 'Not provided'}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="info-row">
+                      <div className="info-item-full">
+                        <span className="info-icon">🎓</span>
+                        <div className="info-text">
+                          <span className="info-label">Education</span>
+                          <span className="info-value">{profile.education.length > 35 ? profile.education.substring(0, 35) + '...' : profile.education}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="info-row">
+                      <div className="info-item-full">
+                        <span className="info-icon">💼</span>
+                        <div className="info-text">
+                          <span className="info-label">Occupation</span>
+                          <span className="info-value">{profile.occupation.length > 35 ? profile.occupation.substring(0, 35) + '...' : profile.occupation}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {profile.socialMedia && (
+                      <div className="info-row">
+                        <div className="info-item-full">
+                          <span className="info-icon">🔗</span>
+                          <div className="info-text">
+                            <span className="info-label">Social Media</span>
+                            <a 
+                              href={formatSocialMediaUrl(profile.socialMedia)} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="info-value social-link-inline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View Profile
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="profile-actions">
+                    <button className="view-profile-btn">
+                      <span className="btn-icon">👁️</span>
+                      View Details
+                    </button>
+                    {profile.biodata && (
+                      <button className="download-biodata-btn" onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(profile.biodata, '_blank');
+                      }}>
+                        <span className="btn-icon">📄</span>
+                        Biodata
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Profile Modal */}
+      {selectedProfile && (
+        <div className="modal-overlay" onClick={closeProfileModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeProfileModal}>
+              ×
+            </button>
+            
+            <div className="modal-header">
+              <div className="modal-image">
+                {selectedProfile.photograph ? (
+                  <img
+                    src={selectedProfile.photograph}
+                    alt={selectedProfile.name}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div className="placeholder-image large" style={{display: selectedProfile.photograph ? 'none' : 'flex'}}>
+                  <span className="placeholder-icon">👤</span>
+                </div>
+              </div>
+              
+              <div className="modal-basic-info">
+                <h2>{selectedProfile.name}</h2>
+                <div className="basic-details">
+                  <span className="age-height">{selectedProfile.age} years • {selectedProfile.heightInFeet}</span>
+                  <span className="gender">{selectedProfile.gender}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="modal-body">
+              <div className="detail-section">
+                <h3>Personal Information</h3>
+                <div className="detail-grid">
+                  <div className="detail-row">
+                    <strong>Father's Name:</strong>
+                    <span>{selectedProfile.fatherName}</span>
+                  </div>
+                  <div className="detail-row">
+                    <strong>Date of Birth:</strong>
+                    <span>{selectedProfile.dateOfBirth}</span>
+                  </div>
+                  <div className="detail-row">
+                    <strong>Height:</strong>
+                    <span>{selectedProfile.height} cm ({selectedProfile.heightInFeet})</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="detail-section">
+                <h3>Education & Career</h3>
+                <div className="detail-grid">
+                  <div className="detail-row">
+                    <strong>Education:</strong>
+                    <span>{selectedProfile.education}</span>
+                  </div>
+                  <div className="detail-row">
+                    <strong>Occupation:</strong>
+                    <span>{selectedProfile.occupation}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="detail-section">
+                <h3>Contact Information</h3>
+                <div className="detail-grid">
+                  <div className="detail-row">
+                    <strong>Phone:</strong>
+                    <span>{selectedProfile.phoneNo}</span>
+                  </div>
+                  {selectedProfile.alternatePhone && (
+                    <div className="detail-row">
+                      <strong>Alternate Phone:</strong>
+                      <span>{selectedProfile.alternatePhone}</span>
+                    </div>
+                  )}
+                  <div className="detail-row">
+                    <strong>Current Address:</strong>
+                    <span>{selectedProfile.currentAddress}</span>
+                  </div>
+                  <div className="detail-row">
+                    <strong>Native Address:</strong>
+                    <span>{selectedProfile.nativeAddress}</span>
+                  </div>
+                </div>
+              </div>
+              
+              {selectedProfile.socialMedia && (
+                <div className="detail-section">
+                  <h3>Social Media</h3>
+                  <div className="detail-row">
+                    <a 
+                      href={formatSocialMediaUrl(selectedProfile.socialMedia)} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="social-link"
+                    >
+                      🔗 View Social Profile
+                    </a>
+                  </div>
+                </div>
+              )}
+              
+              <div className="detail-section">
+                <h3>Actions</h3>
+                <div className="contact-actions">
+                  {selectedProfile.phoneNo && (
+                    <a 
+                      href={'tel:' + selectedProfile.phoneNo} 
+                      className="contact-action-btn call-btn"
+                    >
+                      📞 Call Now
+                    </a>
+                  )}
+                  {selectedProfile.alternatePhone && (
+                    <a 
+                      href={'tel:' + selectedProfile.alternatePhone} 
+                      className="contact-action-btn alt-call-btn"
+                    >
+                      📱 Call Alternate
+                    </a>
+                  )}
+                  {selectedProfile.biodata && (
+                    <a 
+                      href={selectedProfile.biodata} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="contact-action-btn download-btn"
+                    >
+                      📄 Download Biodata
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-      
-      <section className="section faq-section">
-        <div className="container">
-          <h2 className="section-title">Frequently Asked Questions</h2>
-          
-          <div className="faq-container">
-            <div className="faq-item">
-              <h3 className="faq-question">Who can register for the matrimony service?</h3>
-              <p className="faq-answer">
-                Our matrimony service is available to all Baranwal Ekta Sanstha members and their families. 
-                Both individuals seeking partners and parents searching for matches for their children are welcome.
-              </p>
-            </div>
-            
-            <div className="faq-item">
-              <h3 className="faq-question">Is my information kept confidential?</h3>
-              <p className="faq-answer">
-                Yes, we take privacy very seriously. Your personal information is only shared with 
-                potential matches after you have given consent. We never share your details with third parties.
-              </p>
-            </div>
-            
-            <div className="faq-item">
-              <h3 className="faq-question">Is there a fee for using the service?</h3>
-              <p className="faq-answer">
-                There is a nominal registration fee to maintain the quality of our service. 
-                Community members with financial constraints may apply for a fee waiver.
-              </p>
-            </div>
-            
-            <div className="faq-item">
-              <h3 className="faq-question">How long does the matching process take?</h3>
-              <p className="faq-answer">
-                The time frame varies for each individual based on their specific preferences and compatibility factors. 
-                Our team works diligently to identify suitable matches, but quality is our priority over speed.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      )}
     </div>
   );
 };

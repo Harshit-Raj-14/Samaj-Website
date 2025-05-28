@@ -484,14 +484,14 @@ const MembersPage = () => {
               Become part of our growing family and contribute to preserving our rich cultural heritage while building meaningful connections.
             </p>
             <div className="cta-actions">
-              <Link href="https://forms.gle/mCq9oUr9CMyUxf7r9" className="btn btn-primary large">
+              <Link href="https://forms.gle/mCq9oUr9CMyUxf7r9" target='blank' className="btn btn-primary large">
                 <span>Become A Member</span>
                 <i className="btn-icon">📋</i>
               </Link>
-              <Link href="mailto:baranwalektasanstha@gmail.com" className="btn btn-outline large">
+              {/* <Link href="mailto:baranwalektasanstha@gmail.com" className="btn btn-outline large">
                 <span>Get More Information</span>
                 <i className="btn-icon">💬</i>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

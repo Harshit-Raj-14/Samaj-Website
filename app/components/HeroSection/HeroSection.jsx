@@ -12,7 +12,6 @@ const HeroSection = () => {
     '/images/community-1.jpg',
     '/images/community-2.jpg',
     '/images/community-3.jpg',
-    '/images/community-4.jpg',
   ];
 
   useEffect(() => {

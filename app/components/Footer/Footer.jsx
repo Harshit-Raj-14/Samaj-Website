@@ -130,7 +130,6 @@ const Footer = () => {
                   <li><Link href="/events">Events</Link></li>
                   <li><Link href="/achievements">Achievements</Link></li>
                   <li><Link href="/gallery">Photo Gallery</Link></li>
-                  <li><Link href="/news">News & Updates</Link></li>
                   <li><Link href="/contact">Contact Us</Link></li>
                 </ul>
               </div>
@@ -143,10 +142,8 @@ const Footer = () => {
                   <li><Link href="/services/cultural">Cultural Programs</Link></li>
                   <li><Link href="/services/education">Educational Support</Link></li>
                   <li><Link href="/services/youth">Youth Development</Link></li>
-                  <li><Link href="/services/senior">Senior Care</Link></li>
                   <li><Link href="/services/welfare">Community Welfare</Link></li>
-                  <li><Link href="/services/business">Business Network</Link></li>
-                  <li><Link href="/services/matrimonial">Matrimonial Services</Link></li>
+                  <li><Link href="/services/matrimonial">Matrimonial Network</Link></li>
                 </ul>
               </div>
 

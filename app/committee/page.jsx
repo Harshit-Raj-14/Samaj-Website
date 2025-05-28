@@ -14,7 +14,7 @@ const CommitteePage = () => {
       id: 1,
       name: 'Dilipkumar Harihar Prasad Baranwal',
       position: 'President',
-      age: 69,
+      age: 54,
       occupation: 'Business',
       nationality: 'Indian',
       address: 'Chawl No. 18, Prem Nagar, Om Sai Seva Mandal, Unnat Nagar, Road No. 2, Goregaon (W), Mumbai - 400104',
@@ -27,7 +27,7 @@ const CommitteePage = () => {
       id: 2,
       name: 'Tulsidas Ramsaran Baranwal',
       position: 'Vice President',
-      age: 52,
+      age: 69,
       occupation: 'Business',
       nationality: 'Indian',
       address: 'Room no. 889, Sangam Nagar, S.P Road, Near Police Chouki, Wadala, Antop Hill, Mumbai - 400037',
@@ -480,7 +480,7 @@ const CommitteePage = () => {
           
           <div className="elections-info">
             <h3>Committee Elections & Governance</h3>
-              <Link href="/join" className="btn btn-primary large">
+              <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-primary large">
                 <span>Official Document</span>
                 <i className="btn-icon">📋</i>
               </Link>

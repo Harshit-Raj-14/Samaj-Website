@@ -156,7 +156,7 @@ const AchievementsSection = () => {
             <span className="badge-icon">🌟</span>
             <span className="badge-text">Community Pride</span>
           </div>
-          <h2 className="section-title">Our Achievements</h2>
+          {/* <h2 className="section-title">Our Achievements</h2> */}
           <br></br>
           <p className="section-subtitle">
             Celebrating the remarkable accomplishments of Baranwal Ekta Sanstha members who bring honor to our community

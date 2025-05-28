@@ -12,13 +12,3 @@ Here are all the dharmshala details [keep them in hindi] - mkae them into cards
 
 
 
-
-TODO
-
-maharaja aviraha -> link
-
-dharmshal ka data -> 
-
-contributions -> 
-
-Achievements -> section in home and alag se
