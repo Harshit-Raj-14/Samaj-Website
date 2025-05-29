@@ -142,8 +142,7 @@ const AboutSection = () => {
                 Join Our Community
               </Link>
               <Link 
-                target='_blank' 
-                href="https://drive.google.com/file/d/1Bkwr1Bzm34JOOSw8ViFzYkUTtkYAEVgr/view?usp=sharing" 
+                href="/events" 
                 className="btn btn-secondary"
                 style={{
                   display: 'inline-block',
@@ -165,7 +164,7 @@ const AboutSection = () => {
                   transition: 'all 0.3s ease'
                 }}
               >
-                Certificate of Registration
+                Watch Our Events
               </Link>
             </div>
           </div>
