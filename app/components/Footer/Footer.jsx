@@ -194,13 +194,13 @@ const Footer = () => {
               <div className="footer-legal">
                 <p>&copy; {currentYear} Baranwal Ekta Sanstha. All rights reserved.</p>
                 <div className="legal-links">
-                  <Link href="/privacy">Privacy Policy</Link>
+                  <Link href="#">Privacy Policy</Link>
                   <span className="separator">•</span>
-                  <Link href="/terms">Terms of Service</Link>
+                  <Link href="#">Terms of Service</Link>
                   <span className="separator">•</span>
-                  <Link href="/cookies">Cookie Policy</Link>
+                  <Link href="#">Cookie Policy</Link>
                   <span className="separator">•</span>
-                  <Link href="/sitemap">Sitemap</Link>
+                  <Link href="https://baranwalektasanstha.vercel.app/sitemap.xml">Sitemap</Link>
                 </div>
               </div>
               
@@ -208,7 +208,7 @@ const Footer = () => {
                 <p>Made with ❤️ for our community</p>
                 <div className="developer-credit">
                   <span>Developed by</span>
-                  <Link href="#" className="developer-link">Mythra Global Technologies</Link>
+                  <Link href="https://mythraglobal.vercel.app/" className="developer-link">Mythra Global Technologies</Link>
                 </div>
               </div>
             </div>
