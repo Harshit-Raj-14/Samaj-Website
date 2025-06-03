@@ -1,8 +1,9 @@
-"use client"
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import './CommitteePage.css';
+
 
 const CommitteePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -227,289 +228,301 @@ const CommitteePage = () => {
   );
 
   return (
-    <div className="committee-page">
-      {/* Page Header */}
-      <div className="page-header">
-        <div className="header-content">
-          <div className="header-text">
-            <h1 className="page-title">Our Committee</h1>
-            <p className="page-description">
-              Meet the dedicated leaders who guide our community and work tirelessly to preserve our heritage and strengthen our bonds.
-            </p>
-            <div className="header-actions">
-              <Link href="/members" className="btn btn-primary">
-                <span>View All Members</span>
-                <i className="btn-icon">👥</i>
-              </Link>
-              <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-secondary">
-                <span>Committee Info</span>
-                <i className="btn-icon">📞</i>
-              </Link>
-            </div>
-          </div>
-          <div className="header-stats">
-            <div className="stat-card">
-              <div className="stat-number">{committeeMembers.length}</div>
-              <div className="stat-label">Committee Members</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">6</div>
-              <div className="stat-label">Executive Positions</div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-number">25+</div>
-              <div className="stat-label">Years of Service</div>
-            </div>
-          </div>
-        </div>
+    <>
+    {/* SEO Content */}
+      <div style={{ display: 'none' }}>
+        <h1>Baranwal Ekta Sanstha Mumbai Committee</h1>
+        <p>
+          Our dedicated committee members lead the Baranwal Ekta Sanstha Mumbai with commitment to 
+          serving the Ahibaran Baranwal community. Meet our leadership team working for the betterment 
+          of Baranwal samaj in Mumbai.
+        </p>
       </div>
 
-      {/* Committee Directory Section */}
-      <section className="committee-directory-section">
-        <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Committee Directory</h2>
-            <p className="section-subtitle">
-              Our elected representatives working to serve the community with dedication and transparency
-            </p>
-          </div>
-
-          {/* Search and Filters */}
-          <div className="directory-controls">
-            <div className="search-box">
-              <i className="search-icon">🔍</i>
-              <input
-                type="text"
-                placeholder="Search by name, position, or occupation..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
-              />
+      <div className="committee-page">
+        {/* Page Header */}
+        <div className="page-header">
+          <div className="header-content">
+            <div className="header-text">
+              <h1 className="page-title">Our Committee</h1>
+              <p className="page-description">
+                Meet the dedicated leaders who guide our community and work tirelessly to preserve our heritage and strengthen our bonds.
+              </p>
+              <div className="header-actions">
+                <Link href="/members" className="btn btn-primary">
+                  <span>View All Members</span>
+                  <i className="btn-icon">👥</i>
+                </Link>
+                <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-secondary">
+                  <span>Committee Info</span>
+                  <i className="btn-icon">📞</i>
+                </Link>
+              </div>
             </div>
-            
-            <div className="filters">
-              <select
-                value={filterPosition}
-                onChange={(e) => setFilterPosition(e.target.value)}
-                className="filter-select"
-              >
-                <option value="">All Positions</option>
-                <option value="President">President</option>
-                <option value="Vice President">Vice President</option>
-                <option value="Secretary">Secretary</option>
-                <option value="Joint Secretary">Joint Secretary</option>
-                <option value="Treasurer">Treasurer</option>
-                <option value="Joint Treasurer">Joint Treasurer</option>
-                <option value="Member">Member</option>
-              </select>
+            <div className="header-stats">
+              <div className="stat-card">
+                <div className="stat-number">{committeeMembers.length}</div>
+                <div className="stat-label">Committee Members</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">6</div>
+                <div className="stat-label">Executive Positions</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">25+</div>
+                <div className="stat-label">Years of Service</div>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Executive Committee */}
-          {executiveMembers.length > 0 && (
-            <div className="committee-section">
-              <div className="committee-intro">
-                <h2>Executive Committee</h2>
-                <p>
-                  Our executive committee is elected by community members to serve terms of office. 
-                  They meet regularly to discuss and decide on matters affecting our community, plan events, 
-                  and oversee various initiatives.
-                </p>
+        {/* Committee Directory Section */}
+        <section className="committee-directory-section">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Committee Directory</h2>
+              <p className="section-subtitle">
+                Our elected representatives working to serve the community with dedication and transparency
+              </p>
+            </div>
+
+            {/* Search and Filters */}
+            <div className="directory-controls">
+              <div className="search-box">
+                <i className="search-icon">🔍</i>
+                <input
+                  type="text"
+                  placeholder="Search by name, position, or occupation..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
               </div>
               
-              <div className="committee-grid">
-                {executiveMembers.map((member) => (
-                  <div className="committee-card" key={member.id}>
-                    <div className="committee-image-container">
-                      <div className="member-avatar-large">
-                        {member.name.charAt(0)}
-                      </div>
-                      <div className="position-badge">
-                        {member.position}
-                      </div>
-                    </div>
-                    <div className="committee-details">
-                      <h3 className="committee-name">{member.name}</h3>
-                      <div className="member-info">
-                        <div className="info-row">
-                          <span className="info-label">Age:</span>
-                          <span className="info-value">{member.age} years</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="info-label">Occupation:</span>
-                          <span className="occupation-tag">{member.occupation}</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="info-label">Nationality:</span>
-                          <span className="nationality-badge">{member.nationality}</span>
-                        </div>
-                      </div>
-                      <p className="committee-bio">{member.bio}</p>
-                      <div className="committee-contact">
-                        <div className="contact-item">
-                          <i className="contact-icon">📧</i>
-                          <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
-                        </div>
-                        <div className="contact-item">
-                          <i className="contact-icon">📱</i>
-                          <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
-                        </div>
-                      </div>
-                      <div className="address-section">
-                        <i className="address-icon">📍</i>
-                        <p className="member-address">{member.address}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="filters">
+                <select
+                  value={filterPosition}
+                  onChange={(e) => setFilterPosition(e.target.value)}
+                  className="filter-select"
+                >
+                  <option value="">All Positions</option>
+                  <option value="President">President</option>
+                  <option value="Vice President">Vice President</option>
+                  <option value="Secretary">Secretary</option>
+                  <option value="Joint Secretary">Joint Secretary</option>
+                  <option value="Treasurer">Treasurer</option>
+                  <option value="Joint Treasurer">Joint Treasurer</option>
+                  <option value="Member">Member</option>
+                </select>
               </div>
             </div>
-          )}
-          
-          {/* General Members */}
-          {generalMembers.length > 0 && (
-            <div className="committee-section">
-              <div className="committee-intro">
-                <h2>Committee Members</h2>
-                <p>
-                  These dedicated individuals contribute their time, expertise, and passion to serve 
-                  the community in various capacities and support our collective goals.
-                </p>
+
+            {/* Executive Committee */}
+            {executiveMembers.length > 0 && (
+              <div className="committee-section">
+                <div className="committee-intro">
+                  <h2>Executive Committee</h2>
+                  <p>
+                    Our executive committee is elected by community members to serve terms of office. 
+                    They meet regularly to discuss and decide on matters affecting our community, plan events, 
+                    and oversee various initiatives.
+                  </p>
+                </div>
+                
+                <div className="committee-grid">
+                  {executiveMembers.map((member) => (
+                    <div className="committee-card" key={member.id}>
+                      <div className="committee-image-container">
+                        <div className="member-avatar-large">
+                          {member.name.charAt(0)}
+                        </div>
+                        <div className="position-badge">
+                          {member.position}
+                        </div>
+                      </div>
+                      <div className="committee-details">
+                        <h3 className="committee-name">{member.name}</h3>
+                        <div className="member-info">
+                          <div className="info-row">
+                            <span className="info-label">Age:</span>
+                            <span className="info-value">{member.age} years</span>
+                          </div>
+                          <div className="info-row">
+                            <span className="info-label">Occupation:</span>
+                            <span className="occupation-tag">{member.occupation}</span>
+                          </div>
+                          <div className="info-row">
+                            <span className="info-label">Nationality:</span>
+                            <span className="nationality-badge">{member.nationality}</span>
+                          </div>
+                        </div>
+                        <p className="committee-bio">{member.bio}</p>
+                        <div className="committee-contact">
+                          <div className="contact-item">
+                            <i className="contact-icon">📧</i>
+                            <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
+                          </div>
+                          <div className="contact-item">
+                            <i className="contact-icon">📱</i>
+                            <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
+                          </div>
+                        </div>
+                        <div className="address-section">
+                          <i className="address-icon">📍</i>
+                          <p className="member-address">{member.address}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* General Members */}
+            {generalMembers.length > 0 && (
+              <div className="committee-section">
+                <div className="committee-intro">
+                  <h2>Committee Members</h2>
+                  <p>
+                    These dedicated individuals contribute their time, expertise, and passion to serve 
+                    the community in various capacities and support our collective goals.
+                  </p>
+                </div>
+                
+                <div className="committee-grid">
+                  {generalMembers.map((member) => (
+                    <div className="committee-card" key={member.id}>
+                      <div className="committee-image-container">
+                        <div className="member-avatar-large">
+                          {member.name.charAt(0)}
+                        </div>
+                        <div className="position-badge member-badge">
+                          {member.position}
+                        </div>
+                      </div>
+                      <div className="committee-details">
+                        <h3 className="committee-name">{member.name}</h3>
+                        <div className="member-info">
+                          <div className="info-row">
+                            <span className="info-label">Age:</span>
+                            <span className="info-value">{member.age} years</span>
+                          </div>
+                          <div className="info-row">
+                            <span className="info-label">Occupation:</span>
+                            <span className="occupation-tag">{member.occupation}</span>
+                          </div>
+                          <div className="info-row">
+                            <span className="info-label">Nationality:</span>
+                            <span className="nationality-badge">{member.nationality}</span>
+                          </div>
+                        </div>
+                        <p className="committee-bio">{member.bio}</p>
+                        <div className="committee-contact">
+                          <div className="contact-item">
+                            <i className="contact-icon">📧</i>
+                            <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
+                          </div>
+                          <div className="contact-item">
+                            <i className="contact-icon">📱</i>
+                            <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
+                          </div>
+                        </div>
+                        <div className="address-section">
+                          <i className="address-icon">📍</i>
+                          <p className="member-address">{member.address}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {filteredMembers.length === 0 && (
+              <div className="no-results">
+                <div className="no-results-icon">🔍</div>
+                <h3>No committee members found</h3>
+                <p>Try adjusting your search criteria or filters</p>
+              </div>
+            )}
+          </div>
+        </section>
+        
+        {/* Organizational Structure */}
+        <section className="organizational-structure">
+          <div className="container">
+            <h2 className="section-title">Organizational Structure</h2>
+            <div className="organization-chart">
+              <div className="chart-level">
+                <div className="chart-box chart-box-main">
+                  <h3>General Assembly</h3>
+                  <p>All Community Members</p>
+                </div>
               </div>
               
-              <div className="committee-grid">
-                {generalMembers.map((member) => (
-                  <div className="committee-card" key={member.id}>
-                    <div className="committee-image-container">
-                      <div className="member-avatar-large">
-                        {member.name.charAt(0)}
-                      </div>
-                      <div className="position-badge member-badge">
-                        {member.position}
-                      </div>
-                    </div>
-                    <div className="committee-details">
-                      <h3 className="committee-name">{member.name}</h3>
-                      <div className="member-info">
-                        <div className="info-row">
-                          <span className="info-label">Age:</span>
-                          <span className="info-value">{member.age} years</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="info-label">Occupation:</span>
-                          <span className="occupation-tag">{member.occupation}</span>
-                        </div>
-                        <div className="info-row">
-                          <span className="info-label">Nationality:</span>
-                          <span className="nationality-badge">{member.nationality}</span>
-                        </div>
-                      </div>
-                      <p className="committee-bio">{member.bio}</p>
-                      <div className="committee-contact">
-                        <div className="contact-item">
-                          <i className="contact-icon">📧</i>
-                          <a href={`mailto:${member.email}`} className="contact-link">{member.email}</a>
-                        </div>
-                        <div className="contact-item">
-                          <i className="contact-icon">📱</i>
-                          <a href={`tel:+91${member.mobile}`} className="contact-link">+91 {member.mobile}</a>
-                        </div>
-                      </div>
-                      <div className="address-section">
-                        <i className="address-icon">📍</i>
-                        <p className="member-address">{member.address}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="chart-arrow">↓</div>
+              
+              <div className="chart-level">
+                <div className="chart-box chart-box-secondary">
+                  <h3>Executive Committee</h3>
+                  <p>President, Vice President, Secretary, Treasurer</p>
+                </div>
+              </div>
+              
+              <div className="chart-arrow">↓</div>
+              
+              <div className="chart-level chart-level-departments">
+                <div className="chart-box">
+                  <h3>Cultural Affairs</h3>
+                </div>
+                <div className="chart-box">
+                  <h3>Social Welfare</h3>
+                </div>
+                <div className="chart-box">
+                  <h3>Education</h3>
+                </div>
+                <div className="chart-box">
+                  <h3>Youth Affairs</h3>
+                </div>
+                <div className="chart-box">
+                  <h3>Events</h3>
+                </div>
               </div>
             </div>
-          )}
+            
+            <div className="elections-info">
+              <h3>Committee Elections & Governance</h3>
+                <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-primary large">
+                  <span>Official Document</span>
+                  <i className="btn-icon">📋</i>
+                </Link>
+            </div>
+          </div>
+        </section>
 
-          {filteredMembers.length === 0 && (
-            <div className="no-results">
-              <div className="no-results-icon">🔍</div>
-              <h3>No committee members found</h3>
-              <p>Try adjusting your search criteria or filters</p>
-            </div>
-          )}
-        </div>
-      </section>
-      
-      {/* Organizational Structure */}
-      <section className="organizational-structure">
-        <div className="container">
-          <h2 className="section-title">Organizational Structure</h2>
-          <div className="organization-chart">
-            <div className="chart-level">
-              <div className="chart-box chart-box-main">
-                <h3>General Assembly</h3>
-                <p>All Community Members</p>
-              </div>
-            </div>
-            
-            <div className="chart-arrow">↓</div>
-            
-            <div className="chart-level">
-              <div className="chart-box chart-box-secondary">
-                <h3>Executive Committee</h3>
-                <p>President, Vice President, Secretary, Treasurer</p>
-              </div>
-            </div>
-            
-            <div className="chart-arrow">↓</div>
-            
-            <div className="chart-level chart-level-departments">
-              <div className="chart-box">
-                <h3>Cultural Affairs</h3>
-              </div>
-              <div className="chart-box">
-                <h3>Social Welfare</h3>
-              </div>
-              <div className="chart-box">
-                <h3>Education</h3>
-              </div>
-              <div className="chart-box">
-                <h3>Youth Affairs</h3>
-              </div>
-              <div className="chart-box">
-                <h3>Events</h3>
+        {/* Join CTA Section */}
+        <section className="join-cta-section">
+          <div className="container">
+            <div className="cta-content">
+              <h2>Get Involved with Our Community</h2>
+              <p>
+                Join us in our mission to preserve our heritage, strengthen our bonds, and create a better future for our community.
+              </p>
+              <div className="cta-actions">
+                <Link href="/join" className="btn btn-primary large">
+                  <span>Become a Member</span>
+                  <i className="btn-icon">📋</i>
+                </Link>
+                <Link href="/contact" className="btn btn-outline large">
+                  <span>Contact Committee</span>
+                  <i className="btn-icon">💬</i>
+                </Link>
               </div>
             </div>
           </div>
-          
-          <div className="elections-info">
-            <h3>Committee Elections & Governance</h3>
-              <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-primary large">
-                <span>Official Document</span>
-                <i className="btn-icon">📋</i>
-              </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Join CTA Section */}
-      <section className="join-cta-section">
-        <div className="container">
-          <div className="cta-content">
-            <h2>Get Involved with Our Community</h2>
-            <p>
-              Join us in our mission to preserve our heritage, strengthen our bonds, and create a better future for our community.
-            </p>
-            <div className="cta-actions">
-              <Link href="/join" className="btn btn-primary large">
-                <span>Become a Member</span>
-                <i className="btn-icon">📋</i>
-              </Link>
-              <Link href="/contact" className="btn btn-outline large">
-                <span>Contact Committee</span>
-                <i className="btn-icon">💬</i>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

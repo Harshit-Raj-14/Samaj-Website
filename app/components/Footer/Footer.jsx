@@ -208,7 +208,7 @@ const Footer = () => {
                 <p>Made with ❤️ for our community</p>
                 <div className="developer-credit">
                   <span>Developed by</span>
-                  <Link href="#" className="developer-link">TechTeam Baranwal</Link>
+                  <Link href="#" className="developer-link">Mythra Global Technologies</Link>
                 </div>
               </div>
             </div>
