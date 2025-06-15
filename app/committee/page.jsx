@@ -490,13 +490,13 @@ const CommitteePage = () => {
               </div>
             </div>
             
-            {/* <div className="elections-info">
-              <h3>Committee Elections & Governance</h3>
-                <Link href="https://drive.google.com/file/d/1cfeMw_B0Xak-Tko3TQVgQ8UckL23gEAw/view?usp=sharing" target='blank' className="btn btn-primary large">
+            <div className="elections-info">
+              <h3>Official Document</h3>
+                <Link href="https://drive.google.com/file/d/1Bkwr1Bzm34JOOSw8ViFzYkUTtkYAEVgr/view?usp=sharing" target='blank' className="btn btn-primary large">
                   <span>Official Document</span>
                   <i className="btn-icon">📋</i>
                 </Link>
-            </div> */}
+            </div>
           </div>
         </section>
 
