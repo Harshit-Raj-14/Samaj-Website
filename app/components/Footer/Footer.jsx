@@ -164,15 +164,14 @@ const Footer = () => {
                     <div className="contact-icon">📍</div>
                     <div className="contact-text">
                       <h5>Main Office</h5>
-                      <p>CHL, 13 Prem Nagar Sudhar Sangh<br />Linking Road, Opp. Teen Dongri<br />Goregaon(West), Mumbai-400090</p>
-                    </div>
+                      <p>CHL, 13 Prem Nagar Sudhar Sangh<br />Linking Road, Opp. Teen Dongri<br />Goregaon(West), Mumbai-400090</p>                    </div>
                   </div>
 
                   <div className="contact-item">
                     <div className="contact-icon">📞</div>
                     <div className="contact-text">
                       <h5>Phone Numbers</h5>
-                      <p>+91 7870868601<br />+91 9029995569</p>
+                      <p>+91 7870868601<br />+91 9136600629</p>
                     </div>
                   </div>
 
