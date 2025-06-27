@@ -56,10 +56,11 @@ const EventsPage = () => {
         </div>
       </div>
       
-      <section className="section upcoming-events-section">
+      {/* Upcoming Events Section */}
+      {/* <section className="section upcoming-events-section">
         <div className="container">
           <h2 className="section-title">Upcoming Events</h2>
-          
+          <br></br>
           <div className="events-grid">
             {upcomingEvents.map((event) => (
               <div className="event-card" key={event.id}>
@@ -96,12 +97,12 @@ const EventsPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       
       <section className="section past-events-section">
         <div className="container">
           <h2 className="section-title">Past Events</h2>
-          
+          <br></br>
           <div className="past-events-grid grid-2">
             {pastEvents.map((event) => (
               <div className="past-event-card" key={event.id}>

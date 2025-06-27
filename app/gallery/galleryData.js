@@ -27,7 +27,7 @@ export const galleryItems = [
     title: 'सामाजिक कल्याण कार्यक्रम',
     href: `/gallery/kalyan-karikram/kalyan (${i + 1}).jpg`,
     type: 'image',
-    description: 'Cultural performance highlights from the celebration.',
+    description: 'Under a social initiative by Baranwal Ekta Sanstha, Mumbai, educational assistance was provided to 140 children living in slum areas.',
     date: '2025',
     category: 'samjik-kalyan-karikram'
   })),
@@ -39,7 +39,7 @@ export const galleryItems = [
     href: `/gallery/kalyan-karikram/kalyan-v (${i + 1}).mp4`,
     type: 'video',
     thumbnail: `/gallery/video${i + 1}-thumb.jpg`,
-    description: 'Cultural performance highlights from the celebration.',
+    description: 'Under a social initiative by Baranwal Ekta Sanstha, Mumbai, educational assistance was provided to 140 children living in slum areas.',
     date: '2024',
     category: 'maharaja-ahiban-jayanti'
   }))

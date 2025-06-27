@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Twitter, Instagram, Youtube, MessageCircle, Bell } from 'lucide-react';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -11,8 +11,7 @@ const Footer = () => {
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
-    
-    // Intersection Observer for scroll animations
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -23,104 +22,88 @@ const Footer = () => {
     );
 
     const footerElement = document.getElementById('footer');
-    if (footerElement) {
-      observer.observe(footerElement);
-    }
+    if (footerElement) observer.observe(footerElement);
 
     return () => {
-      if (footerElement) {
-        observer.unobserve(footerElement);
-      }
+      if (footerElement) observer.unobserve(footerElement);
     };
   }, []);
 
   return (
-    <footer className={`footer ${isVisible ? 'animate-in' : ''}`} id="footer">
-      {/* Decorative Top Wave */}
-      <div className="footer-wave">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,120 C200,80 400,40 600,80 C800,120 1000,40 1200,80 L1200,120 Z" fill="#000"></path>
-        </svg>
-      </div>
+    <footer className={`${styles.footer} ${isVisible ? styles['animate-in'] : ''}`} id="footer">
+      <div className={styles['footer-content']}>
+        <div className={styles.container}>
+          <div className={styles['footer-main']}>
+            <div className={styles['footer-grid']}>
 
-      <div className="footer-content">
-        <div className="container">
-          {/* Main Footer Content */}
-          <div className="footer-main">
-            <div className="footer-grid">
-              
               {/* Organization Info */}
-              <div className="footer-section organization-info">
-                <div className="footer-logo">
+              <div className={`${styles['footer-section']} ${styles['organization-info']}`}>
+                <div className={styles['footer-logo']}>
                   <div>
                     <Image 
                       src="/logo.png" 
                       alt="Baranwal Ekta Sanstha Logo" 
                       width={48} 
                       height={48}
-                      className="logo-image"
-                      style={{
-                        borderRadius: '50%',
-                        objectFit: 'cover'
-                      }}
+                      className={styles['logo-image']}
+                      style={{ borderRadius: '50%', objectFit: 'cover' }}
                     />
                   </div>
-                  <div className="logo-text">
+                  <div className={styles['logo-text']}>
                     <h3>Baranwal Ekta Sanstha</h3>
                   </div>
                 </div>
-                
-                <p className="organization-description">
+
+                <p className={styles['organization-description']}>
                   Preserving our rich cultural heritage while building a strong, 
                   united community for future generations. Together we celebrate 
                   traditions, support each other, and create lasting bonds.
                 </p>
 
-                <div className="social-links">
+                <div className={styles['social-links']}>
                   <h4>Connect With Us</h4>
-                  <div className="social-icons">
-                    <Link href="https://facebook.com" className="social-link facebook">
-                      <Facebook className="social-icon" size={20} />
+                  <div className={styles['social-icons']}>
+                    <Link href="https://facebook.com" className={`${styles['social-link']} ${styles.facebook}`}>
+                      <Facebook className={styles['social-icon']} size={20} />
                     </Link>
-                    <Link href="https://twitter.com" className="social-link twitter">
-                      <Twitter className="social-icon" size={20} />
+                    <Link href="https://twitter.com" className={`${styles['social-link']} ${styles.twitter}`}>
+                      <Twitter className={styles['social-icon']} size={20} />
                     </Link>
-                    <Link href="https://instagram.com" className="social-link instagram">
-                      <Instagram className="social-icon" size={20} />
+                    <Link href="https://instagram.com" className={`${styles['social-link']} ${styles.instagram}`}>
+                      <Instagram className={styles['social-icon']} size={20} />
                     </Link>
-                    <Link href="https://youtube.com" className="social-link youtube">
-                      <Youtube className="social-icon" size={20} />
+                    <Link href="https://youtube.com" className={`${styles['social-link']} ${styles.youtube}`}>
+                      <Youtube className={styles['social-icon']} size={20} />
                     </Link>
-                    <Link href="https://whatsapp.com" className="social-link whatsapp">
-                      <MessageCircle className="social-icon" size={20} />
+                    <Link href="https://whatsapp.com" className={`${styles['social-link']} ${styles.whatsapp}`}>
+                      <MessageCircle className={styles['social-icon']} size={20} />
                     </Link>
                   </div>
                 </div>
 
-                {/* Newsletter Signup - Moved below social links */}
-                <div className="newsletter-inline">
+                <div className={styles['newsletter-inline']}>
                   <h4>Stay Updated</h4>
-                  <p className="newsletter-description">
+                  <p className={styles['newsletter-description']}>
                     Subscribe to our newsletter for latest events, news, and community updates.
                   </p>
-                  
-                  <form className="newsletter-form">
-                    <div className="input-group">
+
+                  <form className={styles['newsletter-form']}>
+                    <div className={styles['input-group']}>
                       <input 
                         type="email" 
                         placeholder="Enter your email address"
-                        className="newsletter-input"
+                        className={styles['newsletter-input']}
                         required
                       />
-                      <button type="submit" className="newsletter-button">
+                      <button type="submit" className={styles['newsletter-button']}>
                         <span>Subscribe</span>
-                        <Bell className="button-icon" size={16} />
+                        <Bell className={styles['button-icon']} size={16} />
                       </button>
                     </div>
-                    <label className="newsletter-checkbox">
+                    <label className={styles['newsletter-checkbox']}>
                       <input type="checkbox" required />
-                      <span className="checkmark"></span>
-                      <span className="checkbox-text">
+                      <span className={styles.checkmark}></span>
+                      <span className={styles['checkbox-text']}>
                         I agree to receive newsletters and updates
                       </span>
                     </label>
@@ -129,9 +112,9 @@ const Footer = () => {
               </div>
 
               {/* Quick Links */}
-              <div className="footer-section">
-                <h4 className="footer-title">Quick Links</h4>
-                <ul className="footer-links">
+              <div className={styles['footer-section']}>
+                <h4 className={styles['footer-title']}>Quick Links</h4>
+                <ul className={styles['footer-links']}>
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/about">About Us</Link></li>
                   <li><Link href="/activities">Our Activities</Link></li>
@@ -143,9 +126,9 @@ const Footer = () => {
               </div>
 
               {/* Community Services */}
-              <div className="footer-section">
-                <h4 className="footer-title">Community Services</h4>
-                <ul className="footer-links">
+              <div className={styles['footer-section']}>
+                <h4 className={styles['footer-title']}>Community Services</h4>
+                <ul className={styles['footer-links']}>
                   <li><Link href="/services/membership">Membership</Link></li>
                   <li><Link href="/services/cultural">Cultural Programs</Link></li>
                   <li><Link href="/services/education">Educational Support</Link></li>
@@ -155,29 +138,29 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Contact Information */}
-              <div className="footer-section contact-info">
-                <h4 className="footer-title">Get In Touch</h4>
-                
-                <div className="contact-details">
-                  <div className="contact-item">
-                    <div className="contact-icon">📍</div>
-                    <div className="contact-text">
+              {/* Contact Info */}
+              <div className={`${styles['footer-section']} ${styles['contact-info']}`}>
+                <h4 className={styles['footer-title']}>Get In Touch</h4>
+                <div className={styles['contact-details']}>
+                  <div className={styles['contact-item']}>
+                    <div className={styles['contact-icon']}>📍</div>
+                    <div className={styles['contact-text']}>
                       <h5>Main Office</h5>
-                      <p>CHL, 13 Prem Nagar Sudhar Sangh<br />Linking Road, Opp. Teen Dongri<br />Goregaon(West), Mumbai-400090</p>                    </div>
+                      <p>CHL, 13 Prem Nagar Sudhar Sangh<br />Linking Road, Opp. Teen Dongri<br />Goregaon(West), Mumbai-400090</p>
+                    </div>
                   </div>
 
-                  <div className="contact-item">
-                    <div className="contact-icon">📞</div>
-                    <div className="contact-text">
+                  <div className={styles['contact-item']}>
+                    <div className={styles['contact-icon']}>📞</div>
+                    <div className={styles['contact-text']}>
                       <h5>Phone Numbers</h5>
                       <p>+91 7870868601<br />+91 9136600629</p>
                     </div>
                   </div>
 
-                  <div className="contact-item">
-                    <div className="contact-icon">✉️</div>
-                    <div className="contact-text">
+                  <div className={styles['contact-item']}>
+                    <div className={styles['contact-icon']}>✉️</div>
+                    <div className={styles['contact-text']}>
                       <h5>Email Address</h5>
                       <p>baranwalektasanstha@gmail.com</p>
                     </div>
@@ -187,34 +170,36 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Footer Bottom */}
-          <div className="footer-bottom">
-            <div className="footer-bottom-content">
-              <div className="footer-legal">
+          {/* Bottom */}
+          <div className={styles['footer-bottom']}>
+            <div className={styles['footer-bottom-content']}>
+              <div className={styles['footer-legal']}>
                 <p>&copy; {currentYear} Baranwal Ekta Sanstha. All rights reserved.</p>
-                <div className="legal-links">
+                <div className={styles['legal-links']}>
                   <Link href="#">Privacy Policy</Link>
-                  <span className="separator">•</span>
+                  <span className={styles.separator}>•</span>
                   <Link href="#">Terms of Service</Link>
-                  <span className="separator">•</span>
+                  <span className={styles.separator}>•</span>
                   <Link href="#">Cookie Policy</Link>
-                  <span className="separator">•</span>
+                  <span className={styles.separator}>•</span>
                   <Link href="https://baranwalektasanstha.vercel.app/sitemap.xml">Sitemap</Link>
                 </div>
               </div>
-              
-              <div className="footer-credits">
+
+              <div className={styles['footer-credits']}>
                 <p>Made with ❤️ for our community</p>
-                <div className="developer-credit">
+                <div className={styles['developer-credit']}>
                   <span>Developed by</span>
-                  <Link href="https://mythraglobal.vercel.app/" className="developer-link">Mythra Global Technologies</Link>
+                  <Link href="https://mythraglobal.vercel.app/" className={styles['developer-link']}>
+                    Mythra Global Technologies
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <hr></hr>
+      <hr />
     </footer>
   );
 };
